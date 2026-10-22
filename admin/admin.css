@@ -1,0 +1,514 @@
+/* ============================================================
+   BHIMAS TRADITIONAL INDIAN KITCHEN — Admin Panel Styles
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --maroon:      #b52833;
+  --dark-maroon: #871d25;
+  --gold:        #FFDE59;
+  --cream:       #FFF6D2;
+  --green:       #256C23;
+  --dark-brown:  #3E1A00;
+  --sidebar-w:   232px;
+  --topbar-h:    58px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;      /* increased from 14px */
+  font-weight: 500;     /* increased weight for visibility */
+  color: #2c2c2c;
+  background: #f0ede8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+* {
+  font-style: normal !important; /* remove all slanting/italic texts in admin panel */
+}
+
+/* ── Outer wrapper ────────────────────────────────────────────── */
+.adm-wrap { display: flex; min-height: 100vh; }
+
+/* ── Sidebar ──────────────────────────────────────────────────── */
+.adm-sidebar {
+  width: var(--sidebar-w);
+  background: var(--maroon);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.adm-sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  color: var(--gold);
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.adm-logo-icon { font-size: 24px; }
+.adm-sidebar__logo small {
+  font-size: 11px;
+  color: rgba(255,220,100,.7);
+  font-weight: normal;
+}
+
+.adm-sidebar__nav {
+  padding: 12px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.adm-sidebar__nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: background .15s, color .15s;
+}
+.adm-sidebar__nav a:hover { background: rgba(255,255,255,.1); color: #fff; }
+.adm-sidebar__nav a.active {
+  background: rgba(255,222,89,.15);
+  color: var(--gold);
+  border-left: 3px solid var(--gold);
+  padding-left: 19px;
+}
+.adm-sidebar__logout {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+}
+
+/* ── Body (right of sidebar) ─────────────────────────────────── */
+.adm-body {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  max-width: calc(100vw - var(--sidebar-w));
+  overflow-x: hidden;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+.adm-topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid #e2ddd5;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+.adm-topbar__title { font-size: 18px; font-weight: 600; color: var(--dark-maroon); }
+.adm-topbar__user  { font-size: 12px; color: var(--green); font-weight: 600; letter-spacing: .03em; }
+
+/* ── Content area ────────────────────────────────────────────── */
+.adm-content { flex: 1; padding: 28px 32px; }
+
+/* ── Stat cards ──────────────────────────────────────────────── */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 22px 24px;
+  border-top: 4px solid var(--maroon);
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.stat-card__value {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--maroon);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-card__label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #888;
+}
+
+/* ── Section card ────────────────────────────────────────────── */
+.adm-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.adm-section__head {
+  padding: 15px 24px;
+  border-bottom: 1px solid #f0ece4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.adm-section__head h2 { font-size: 15px; font-weight: 600; color: var(--dark-maroon); }
+.adm-section__body { padding: 24px; }
+
+/* ── Tables ──────────────────────────────────────────────────── */
+/* Scrollable wrapper so wide tables never break the viewport */
+.adm-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.adm-table { width: 100%; border-collapse: collapse; font-size: 12.5px !important; min-width: 0 !important; }
+.adm-table th {
+  background: #f8f5f0;
+  text-align: left;
+  padding: 10px 8px !important;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #666;
+  border-bottom: 1px solid #e8e2d8;
+  white-space: nowrap;
+}
+.adm-table td {
+  padding: 10px 8px !important;
+  border-bottom: 1px solid #f2ede5;
+  vertical-align: middle;
+}
+.adm-table tbody tr:hover { background: #faf8f4; }
+.adm-table tbody tr:last-child td { border-bottom: none; }
+.unread-row { border-left: 4px solid var(--gold) !important; background: #fffdf4 !important; }
+
+/* ── Status badges ───────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.badge--pending   { background: #fff3cd; color: #856404; }
+.badge--confirmed { background: #d4edda; color: #155724; }
+.badge--cancelled { background: #f8d7da; color: #721c24; }
+.badge--preparing { background: #cce5ff; color: #004085; }
+.badge--ready     { background: #d4edda; color: #155724; }
+.badge--completed { background: #e2e3e5; color: #383d41; }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-adm {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.4;
+  transition: background .15s, box-shadow .15s;
+}
+.btn-adm--primary { background: var(--maroon); color: #fff; }
+.btn-adm--primary:hover { background: var(--dark-maroon); }
+.btn-adm--gold { background: var(--gold); color: var(--dark-brown); }
+.btn-adm--gold:hover { background: #f5d220; }
+.btn-adm--danger { background: #dc3545; color: #fff; }
+.btn-adm--danger:hover { background: #b02a37; }
+.btn-adm--outline { background: transparent; color: var(--maroon); border: 1.5px solid var(--maroon); }
+.btn-adm--outline:hover { background: #f9f0f0; }
+.btn-adm--sm { padding: 4px 10px; font-size: 12px; }
+
+/* ── Forms ───────────────────────────────────────────────────── */
+.adm-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #555;
+  margin-bottom: 4px;
+}
+.adm-input, .adm-select, .adm-textarea {
+  padding: 7px 11px;
+  border: 1.5px solid #d4cfc6;
+  border-radius: 5px;
+  font-size: 13.5px;
+  background: #fff;
+  color: #2c2c2c;
+  transition: border-color .15s;
+}
+.adm-input:focus, .adm-select:focus, .adm-textarea:focus {
+  outline: none;
+  border-color: var(--maroon);
+}
+.adm-textarea { resize: vertical; min-height: 80px; width: 100%; }
+
+.adm-filter-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: #faf8f4;
+  border-radius: 7px;
+  border: 1px solid #e8e2d8;
+}
+.adm-filter-form label { font-size: 12px; font-weight: 600; color: #555; display: block; margin-bottom: 3px; }
+
+/* ── Pagination ──────────────────────────────────────────────── */
+.adm-pager { display: flex; align-items: center; gap: 5px; padding: 16px 0 4px; flex-wrap: wrap; }
+.adm-pager a, .adm-pager span {
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 4px;
+  font-size: 13px;
+  border: 1px solid #d4cfc6;
+  text-decoration: none;
+  color: var(--dark-maroon);
+}
+.adm-pager a:hover { background: #f9f0f0; border-color: var(--maroon); }
+.adm-pager .current { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+
+/* ── Notices ─────────────────────────────────────────────────── */
+.adm-notice {
+  padding: 12px 18px;
+  border-radius: 5px;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  border-left: 4px solid;
+}
+.adm-notice--success { background: #d4edda; color: #155724; border-color: var(--green); }
+.adm-notice--error   { background: #f8d7da; color: #721c24; border-color: #dc3545; }
+.adm-notice--info    { background: #cce5ff; color: #004085; border-color: #0066cc; }
+
+/* ── Expand rows (orders / messages) ────────────────────────── */
+.expand-inner {
+  padding: 14px 20px;
+  background: #faf8f4;
+  border-bottom: 1px solid #e8e2d8;
+  font-size: 13px;
+}
+.expand-inner h4 { color: var(--dark-maroon); margin-bottom: 8px; font-size: 13px; }
+.items-list { list-style: none; }
+.items-list li { padding: 5px 0; border-bottom: 1px solid #ede8df; display: flex; justify-content: space-between; }
+.items-list li:last-child { border-bottom: none; }
+
+details > summary { cursor: pointer; user-select: none; }
+details > summary::-webkit-details-marker { color: var(--maroon); }
+
+/* ── Login page ──────────────────────────────────────────────── */
+.login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f0ede8; }
+.login-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 24px rgba(0,0,0,.1); padding: 44px 40px; width: 360px; }
+.login-logo { text-align: center; margin-bottom: 28px; }
+.login-logo h1 { font-family: 'Poppins', sans-serif; font-size: 24px; color: var(--maroon); margin-bottom: 6px; font-weight: 700; }
+.login-logo p { font-size: 12px; color: #888; }
+
+/* ── Settings ────────────────────────────────────────────────── */
+.settings-section { margin-bottom: 32px; }
+.settings-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-maroon);
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e8e2d8;
+  margin-bottom: 16px;
+}
+.hours-table { width: 100%; border-collapse: collapse; }
+.hours-table th, .hours-table td { padding: 9px 12px; border: 1px solid #e8e2d8; font-size: 13px; }
+.hours-table th { background: #f8f5f0; font-size: 11.5px; text-transform: uppercase; color: #666; font-weight: 600; }
+.hours-table select { padding: 5px 8px; border: 1px solid #d4cfc6; border-radius: 4px; font-size: 13px; }
+.hero-preview { max-width: 320px; border-radius: 6px; border: 1px solid #e8e2d8; margin-bottom: 12px; }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .adm-content { padding: 20px 16px; }
+}
+@media (max-width: 900px) {
+  .adm-sidebar { width: 56px; }
+  .adm-sidebar__logo span:last-child, .adm-sidebar__nav a span { display: none; }
+  .adm-body { margin-left: 56px; max-width: calc(100vw - 56px); }
+  .stat-cards { grid-template-columns: 1fr 1fr; }
+  .adm-content { padding: 12px; }
+}
+
+/* ── Global Typography Overrides for Readability ── */
+* {
+  font-style: normal !important;
+}
+
+body, p, span, li, a, td, th, input, select, textarea, button, label {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6,
+.adm-sidebar__logo,
+.login-logo h1 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700;
+}
+
+/* Premium Admin Card Designs */
+.adm-sidebar {
+  background: linear-gradient(180deg, #801C23 0%, #4A0E12 100%) !important;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15) !important;
+}
+.adm-section, .stat-card {
+  border-radius: 10px !important;
+  border: 1px solid rgba(200, 169, 110, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ── Responsive Tables for Orders & Bookings ───────────────── */
+@media (max-width: 1200px) {
+  .orders-page-table, 
+  .orders-page-table thead, 
+  .orders-page-table tbody, 
+  .orders-page-table th, 
+  .orders-page-table td, 
+  .orders-page-table tr,
+  .bookings-page-table, 
+  .bookings-page-table thead, 
+  .bookings-page-table tbody, 
+  .bookings-page-table th, 
+  .bookings-page-table td, 
+  .bookings-page-table tr {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+  
+  /* Hide headers visually */
+  .orders-page-table thead,
+  .bookings-page-table thead {
+    display: none !important;
+  }
+  
+  .orders-page-table tr,
+  .bookings-page-table tr {
+    border: 1px solid rgba(200, 169, 110, 0.25) !important;
+    margin-bottom: 16px !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    padding: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+  }
+  
+  .orders-page-table td,
+  .bookings-page-table td {
+    border: none !important;
+    border-bottom: 1px solid #f2ede5 !important;
+    position: relative !important;
+    padding: 10px 8px 10px 42% !important;
+    text-align: right !important;
+    min-height: 38px !important;
+    white-space: normal !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+  
+  .orders-page-table td:last-child,
+  .bookings-page-table td:last-child {
+    border-bottom: none !important;
+  }
+  
+  /* Add label pseudo-elements */
+  .orders-page-table td::before,
+  .bookings-page-table td::before {
+    position: absolute !important;
+    top: 50% !important;
+    left: 8px !important;
+    transform: translateY(-50%) !important;
+    width: 38% !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+    color: #8C6050 !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: .05em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  
+  /* Orders table labels */
+  .orders-page-table td:nth-of-type(1)::before { content: "Ref"; }
+  .orders-page-table td:nth-of-type(2)::before { content: "Name / Email"; }
+  .orders-page-table td:nth-of-type(3)::before { content: "Phone"; }
+  .orders-page-table td:nth-of-type(4)::before { content: "Pickup"; }
+  .orders-page-table td:nth-of-type(5)::before { content: "Total"; }
+  .orders-page-table td:nth-of-type(6)::before { content: "Items"; }
+  .orders-page-table td:nth-of-type(7)::before { content: "Status"; }
+  .orders-page-table td:nth-of-type(8)::before { content: "Update"; }
+  
+  /* Bookings table labels */
+  .bookings-page-table td:nth-of-type(1)::before { content: "Ref"; }
+  .bookings-page-table td:nth-of-type(2)::before { content: "Name / Email"; }
+  .bookings-page-table td:nth-of-type(3)::before { content: "Phone"; }
+  .bookings-page-table td:nth-of-type(4)::before { content: "Date"; }
+  .bookings-page-table td:nth-of-type(5)::before { content: "Time"; }
+  .bookings-page-table td:nth-of-type(6)::before { content: "Guests"; }
+  .bookings-page-table td:nth-of-type(7)::before { content: "Requests"; }
+  .bookings-page-table td:nth-of-type(8)::before { content: "Status"; }
+  .bookings-page-table td:nth-of-type(9)::before { content: "Update"; }
+}
+
+/* ── Settings Page Responsiveness ───────────────────────────── */
+.adm-settings-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 20px !important;
+  max-width: 700px !important;
+}
+
+/* Enforce wrapping on email fields and constrain widths in desktop tables */
+.adm-table td small {
+  display: block;
+  word-break: break-all;
+  max-width: 180px;
+}
+.adm-table td:nth-child(2) {
+  max-width: 160px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+.adm-table td:nth-child(2) strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bookings-page-table td:nth-child(7) {
+  max-width: 150px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}

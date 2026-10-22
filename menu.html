@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>Our Menu | Bhimas Traditional Indian Kitchen — Luxembourg</title>
+  <meta name="description" content="Explore Bhimas' full menu of authentic South Indian dishes — starters, mains, biryani, breads, thalis, desserts and drinks. Order takeaway or dine in." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/menu.html" />
+
+  <!-- ─── Open Graph ─── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Our Menu | Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="Authentic South Indian cuisine in Luxembourg — explore our full menu." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta property="og:url"         content="https://bhimas.lu/menu.html" />
+
+  <!-- ─── Favicon ─── -->
+  <link rel="icon"             type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon"             type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180"                href="images/apple-touch-icon.png" />
+
+  <!-- ─── CSRF token ─── -->
+  <meta name="csrf-token" content="" />
+
+  <!-- ─── Design system ─── -->
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+  <link rel="stylesheet" href="css/menu.css?v=10005" />
+
+  <!-- ─── Google Fonts ─── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    .menu-intro-strip {
+      background: #FAF6EE;
+      padding: 70px 0 20px;
+      text-align: center;
+    }
+    .cat-section-bg {
+      background: #FAF6EE;
+      padding-bottom: 80px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ── Navbar ── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas logo" class="navbar__logo-img"
+             width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link active">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Mobile Menu ── -->
+  <nav class="navbar__mobile-menu" id="mobile-menu"
+       role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+        <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      View Cart
+      <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+    </a>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="page-hero" aria-labelledby="page-hero-title">
+    <div class="page-hero__content">
+      <img src="images/logo.png" alt="" class="page-hero__logo" width="72" height="72"
+           loading="eager" onerror="this.style.display='none'" aria-hidden="true" />
+      <span class="page-hero__eyebrow">Bhimas Kitchen — Luxembourg</span>
+      <h1 class="page-hero__title" id="page-hero-title">Our Menu</h1>
+      <div class="page-hero__ornament" aria-hidden="true">
+        <span class="page-hero__ornament-dot"></span>
+      </div>
+      <p class="page-hero__sub">
+        Every dish a love letter to South India — crafted from family recipes,
+        fragrant spices, and decades of kitchen wisdom.
+      </p>
+      <div class="page-hero__ctas">
+        <a href="takeaway.html"    class="btn btn--gold">Order Takeaway</a>
+        <a href="reservation.html" class="btn btn--outline-cream">Book a Table</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main ── -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- Intro heading -->
+    <div class="menu-intro-strip">
+      <div class="container">
+        <div class="section-heading fade-in">
+          <span class="section-heading__eyebrow">Explore our kitchen</span>
+          <h2 class="section-heading__title">Choose a Category</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+          <p class="section-heading__sub">
+            From crisp golden starters to slow-cooked curries and handcrafted breads —
+            discover the full breadth of Bhimas' kitchen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category grid -->
+    <section class="cat-section-bg" aria-label="Menu categories">
+      <div class="container">
+
+        <div class="cat-grid" role="list">
+
+          <!-- 1. Starters -->
+          <a href="menu-starters.html" class="cat-card cat-card--overlay fade-in" role="listitem"
+             aria-label="Starters — 8 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80&fit=crop"
+                   alt="Golden samosas with chutneys" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Starters</span>
+              <span class="cat-card__count">8 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Starters</h2>
+              <p class="cat-card__desc">Crispy samosas, chargrilled kebabs and tandoor-kissed bites to begin your journey.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 2. Mains -->
+          <a href="menu-mains.html" class="cat-card cat-card--overlay fade-in fade-in--delay-1" role="listitem"
+             aria-label="Mains — 10 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80&fit=crop"
+                   alt="Rich Indian curry with garnish" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Mains</span>
+              <span class="cat-card__count">10 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Mains</h2>
+              <p class="cat-card__desc">Slow-cooked curries, velvety dals and hearty mains bursting with layered spice.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 3. Rice & Biryani -->
+          <a href="menu-rice-biryani.html" class="cat-card cat-card--overlay fade-in fade-in--delay-2" role="listitem"
+             aria-label="Rice and Biryani — 6 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80&fit=crop"
+                   alt="Fragrant biryani with saffron and fried onions" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Rice &amp; Biryani</span>
+              <span class="cat-card__count">6 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Rice &amp; Biryani</h2>
+              <p class="cat-card__desc">Saffron-laced dum biryanis and fragrant basmati — the crown jewels of our kitchen.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 4. Breads -->
+          <a href="menu-breads.html" class="cat-card cat-card--overlay fade-in fade-in--delay-3" role="listitem"
+             aria-label="Breads — 6 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80&fit=crop"
+                   alt="Freshly baked naan from the tandoor" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Breads</span>
+              <span class="cat-card__count">6 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Breads</h2>
+              <p class="cat-card__desc">Pillowy naans, flaky parathas and rustic rotis — straight from the clay tandoor.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 5. Thali — Chef's Pick ribbon -->
+          <a href="menu-thali.html" class="cat-card cat-card--overlay fade-in fade-in--delay-4" role="listitem"
+             aria-label="Thali Platters — 3 items, Chef's Pick">
+            <span class="cat-card__ribbon" aria-label="Chef's Pick">Chef's Pick</span>
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80&fit=crop"
+                   alt="Traditional Indian thali platter with multiple dishes" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Thali</span>
+              <span class="cat-card__count">3 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Thali Platters</h2>
+              <p class="cat-card__desc">A complete feast on one plate — dal, curry, bread, rice, pickle and sweet.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 6. Desserts -->
+          <a href="menu-desserts.html" class="cat-card cat-card--overlay fade-in fade-in--delay-5" role="listitem"
+             aria-label="Desserts — 4 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1620292760736-5ccaed8c6fee?w=600&q=80&fit=crop"
+                   alt="Gulab jamun in sugar syrup" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Desserts</span>
+              <span class="cat-card__count">4 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Desserts</h2>
+              <p class="cat-card__desc">Syrup-soaked gulab jamun, saffron kheer and silky kulfi to end on a sweet note.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- 7. Drinks -->
+          <a href="menu-drinks.html" class="cat-card cat-card--overlay fade-in" role="listitem"
+             aria-label="Drinks — 5 items">
+            <div class="cat-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80&fit=crop"
+                   alt="Mango lassi in a tall glass" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="cat-card__label">Drinks</span>
+              <span class="cat-card__count">5 items</span>
+            </div>
+            <div class="cat-card__body">
+              <h2 class="cat-card__title">Drinks</h2>
+              <p class="cat-card__desc">Chilled lassis, spiced masala chai and fresh lime soda to cool and refresh.</p>
+              <span class="cat-card__cta">Explore
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+
+        </div><!-- /.cat-grid -->
+
+        <!-- Allergen strip -->
+        <div class="allergen-strip fade-in">
+          <div class="allergen-strip__inner">
+            <div class="allergen-strip__legend">
+              <span class="allergen-strip__item">
+                <span class="allergen-strip__dot allergen-strip__dot--veg" aria-label="Vegetarian"></span>
+                Vegetarian
+              </span>
+              <span class="allergen-strip__item">
+                <span class="allergen-strip__dot allergen-strip__dot--nonveg" aria-label="Non-vegetarian"></span>
+                Non-Vegetarian
+              </span>
+            </div>
+            <p class="allergen-strip__note">
+              All prices include VAT. Allergen information available on request — please speak to our team if you have dietary requirements.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /.container -->
+    </section>
+
+    <!-- Mandala divider -->
+    <div class="divider-mandala" aria-hidden="true">
+      <div class="divider-mandala__inner"></div>
+    </div>
+
+    <!-- CTA strip -->
+    <section class="section" style="background:#fff; padding-block:3.5rem;">
+      <div class="container" style="text-align:center;">
+        <div class="section-heading fade-in" style="margin-bottom:1.8rem;">
+          <span class="section-heading__eyebrow">Ready to order?</span>
+          <h2 class="section-heading__title">Dine In or Take Away</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+          <p class="section-heading__sub">
+            Reserve your table for a leisurely evening, or order takeaway and enjoy
+            the flavours of Bhimas from the comfort of home.
+          </p>
+        </div>
+        <div class="flex-center gap-4 fade-in fade-in--delay-1" style="flex-wrap:wrap;">
+          <a href="reservation.html" class="btn btn--primary">Book a Table</a>
+          <a href="takeaway.html"    class="btn btn--gold">Order Takeaway</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__logo-text">
+          <span class="footer__logo-name">Bhimas</span>
+          <span class="footer__logo-tagline">Traditional Indian Kitchen</span>
+        </div>
+        <p class="footer__about">
+          Authentic South Indian cuisine crafted with love and tradition,
+          right in the heart of Luxembourg.
+        </p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h3 class="footer__col-title">Explore</h3>
+        <a href="index.html"       class="footer__link">Home</a>
+        <a href="story.html"       class="footer__link">Our Story</a>
+        <a href="menu.html"        class="footer__link">Menu</a>
+        <a href="reservation.html" class="footer__link">Reserve a Table</a>
+        <a href="contact.html"     class="footer__link">Contact</a>
+      </nav>
+      <nav class="footer__col" aria-label="Our Menu">
+        <h3 class="footer__col-title">Our Menu</h3>
+        <a href="menu-starters.html"     class="footer__link">Starters</a>
+        <a href="menu-mains.html"        class="footer__link">Mains</a>
+        <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+        <a href="menu-breads.html"       class="footer__link">Breads</a>
+        <a href="menu-thali.html"        class="footer__link">Thali Platters</a>
+        <a href="menu-desserts.html"     class="footer__link">Desserts</a>
+        <a href="menu-drinks.html"       class="footer__link">Drinks</a>
+      </nav>
+      <div class="footer__col" aria-label="Visit Us">
+        <h3 class="footer__col-title">Visit Us</h3>
+        <p class="footer__address">
+          123 Rue de la Gare<br />
+          Luxembourg City<br />
+          L-1616, Luxembourg
+        </p>
+        <a href="tel:+35212345678"            class="footer__link">+352 12 34 56 78</a>
+        <a href="mailto:hello@bhimas.lu" class="footer__link">hello@bhimas.lu</a>
+        <p class="footer__hours">Mon–Fri: 12:00 – 22:00<br />Sat–Sun: 11:00 – 23:00</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copy">
+          &copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen.
+          All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Floating cart bar ── -->
+    <!-- FLOATING CART BAR -->
+  <a href="takeaway.html" class="cart-bar" id="cart-bar" role="status" aria-live="polite">
+    <div class="cart-bar__inner">
+      <div class="cart-bar__left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-bar__count" aria-label="Items in cart">0</span>
+        <span class="cart-bar__label">items in your order</span>
+      </div>
+      <div class="cart-bar__total">&euro;0.00</div>
+      <div class="cart-bar__btn" role="button">View Order</div>
+    </div>
+  </a>
+
+  <!-- ── Toast container ── -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ── Scripts ── -->
+  <script src="js/main.js"></script>
+  <!-- ── Floating Cart Button ──────────────────────────────── -->
+  <a href="takeaway.html" class="cart-fab" id="cart-fab" aria-label="View cart">
+    <span class="cart-fab__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </span>
+    <span class="cart-fab__badge" id="cart-fab-count">0</span>
+  </a>
+</body>
+</html>

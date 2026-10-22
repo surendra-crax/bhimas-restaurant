@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Takeaway | Bhimas Traditional Indian Kitchen</title>
+  <meta name="description" content="Pre-order takeaway from Bhimas Traditional Indian Kitchen in Luxembourg — authentic South Indian food for collection. Browse the full menu and place your order online." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/takeaway.html" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Order Takeaway | Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="Pre-order authentic South Indian takeaway for collection in Luxembourg." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta property="og:url"         content="https://bhimas.lu/takeaway.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <meta name="csrf-token" content="" />
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Takeaway page extras ── */
+
+    /* Closed banner */
+    .avail-banner {
+      display: none;
+      background: var(--cream);
+      border: 1px solid rgba(128,28,35,0.2);
+      border-left: 4px solid var(--maroon);
+      border-radius: 4px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .avail-banner.visible { display: block; }
+    .avail-banner__title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.05em; color: var(--dark-maroon); margin: 0 0 0.4rem;
+    }
+    .avail-banner__body {
+      font-family:Poppins, sans-serif; font-size: 1rem; color: #5a4040; margin: 0;
+    }
+    .avail-banner__phone {
+      display: inline-block; margin-top: 0.5rem;
+      font-family:Poppins, sans-serif; font-size: 0.9rem; font-weight: 700;
+      color: var(--maroon); text-decoration: none;
+    }
+
+    /* Two-panel layout */
+    .to-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 2.5rem 0 5rem;
+    }
+
+    /* ── Left: Accordion ── */
+    .acc-wrap {
+      background: #fff;
+      border: 1px solid rgba(128,28,35,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(62,26,0,0.08);
+    }
+    .acc-wrap__header {
+      background: var(--maroon);
+      padding: 1rem 1.5rem;
+    }
+    .acc-wrap__title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      font-weight: 700; margin: 0;
+    }
+    .acc-panel {}
+    .acc-panel + .acc-panel { border-top: 1px solid rgba(128,28,35,0.08); }
+    .acc-panel__header {
+      width: 100%; text-align: left; cursor: pointer;
+      display: flex; align-items: center; gap: 0.6rem;
+      background: none; border: none;
+      padding: 0.9rem 1.5rem;
+      font-family:Poppins, sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--dark-maroon); font-weight: 700;
+      transition: background 0.15s ease;
+    }
+    .acc-panel__header:hover { background: rgba(128,28,35,0.04); }
+    .acc-panel__title { flex: 1; }
+    .acc-panel__count {
+      font-size: 0.6rem; background: var(--maroon);
+      color: #fff; border-radius: 10px;
+      padding: 0.15rem 0.5rem; display: none;
+    }
+    .acc-panel__count.visible { display: inline-block; }
+    .acc-panel__chevron {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none; flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .acc-panel.open .acc-panel__chevron { transform: rotate(180deg); }
+    .acc-panel__body {
+      display: none; padding: 0 0 0.5rem;
+    }
+    .acc-panel.open .acc-panel__body { display: block; }
+
+    /* Accordion item row */
+    .acc-item {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.65rem 1.5rem;
+      border-bottom: 1px solid rgba(128,28,35,0.05);
+      transition: background 0.12s ease;
+    }
+    .acc-item:last-child { border-bottom: none; }
+    .acc-item:hover { background: rgba(255,246,210,0.5); }
+    .acc-item__info {
+      display: flex; align-items: center; gap: 0.55rem; flex: 1; min-width: 0;
+    }
+    .acc-dot {
+      width: 14px; height: 14px; border-radius: 2px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .acc-dot::after {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .acc-dot--veg { background: #fff; border: 2px solid var(--green, #256C23); }
+    .acc-dot--veg::after { background: var(--green, #256C23); }
+    .acc-dot--nonveg { background: #fff; border: 2px solid var(--maroon); }
+    .acc-dot--nonveg::after { background: var(--maroon); }
+    .acc-item__name {
+      font-family:Poppins, sans-serif; font-size: 0.95rem;
+      color: #3a2a2a; flex: 1; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .acc-item__price {
+      font-family:Poppins, sans-serif; font-size: 0.8rem;
+      font-weight: 700; color: var(--maroon);
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* Qty stepper */
+    .acc-item__stepper {
+      display: flex; align-items: center; gap: 0;
+      flex-shrink: 0;
+    }
+    .stepper__btn {
+      width: 28px; height: 28px; border-radius: 2px;
+      border: 1px solid rgba(128,28,35,0.3);
+      background: #fff; color: var(--maroon);
+      font-size: 1rem; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+      font-weight: 700;
+    }
+    .stepper__btn:hover { background: var(--maroon); color: #fff; }
+    .stepper__btn--dec { border-radius: 2px 0 0 2px; border-right: none; }
+    .stepper__btn--inc { border-radius: 0 2px 2px 0; border-left: none; }
+    .stepper__val {
+      min-width: 32px; text-align: center;
+      font-family:Poppins, sans-serif; font-size: 0.78rem; font-weight: 700;
+      color: var(--dark-maroon);
+      border: 1px solid rgba(128,28,35,0.3); border-left: none; border-right: none;
+      padding: 0 4px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── Right: Cart panel ── */
+    .cart-panel {
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(62,26,0,0.08);
+      position: sticky; top: 80px; /* also needed by form-double-border ::before */
+    }
+    .cart-panel__header {
+      background: var(--dark-maroon);
+      padding: 1rem 1.5rem;
+      border-radius: 4px 4px 0 0;
+    }
+    .cart-panel__title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      font-weight: 700; margin: 0;
+    }
+
+    /* Cart line items */
+    .cart-lines {
+      padding: 0.5rem 0;
+      min-height: 60px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .cart-line {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.5rem; padding: 0.55rem 1.25rem;
+      font-family:Poppins, sans-serif; font-size: 0.9rem;
+      border-bottom: 1px solid rgba(128,28,35,0.06);
+    }
+    .cart-line:last-child { border-bottom: none; }
+    .cart-line__name { flex: 1; color: #3a2a2a; line-height: 1.3; }
+    .cart-line__qty  { color: #7a5a5a; font-size: 0.82rem; white-space: nowrap; }
+    .cart-line__sub  { font-family:Poppins, sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--maroon); white-space: nowrap; }
+    .cart-empty {
+      padding: 1.5rem; text-align: center;
+      font-family:Poppins, sans-serif; font-size: 0.92rem;
+      font-style: italic; color: #9a7a7a;
+    }
+
+    /* Order total */
+    .cart-total {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      border-top: 2px solid rgba(128,28,35,0.15);
+    }
+    .cart-total__label {
+      font-family:Poppins, sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #7a5a5a; font-weight: 600;
+    }
+    .cart-total__amount {
+      font-family:Poppins, sans-serif; font-size: 1.15rem;
+      font-weight: 700; color: var(--dark-maroon);
+    }
+
+    /* Divider within cart panel */
+    .cart-divider {
+      height: 1px; background: rgba(128,28,35,0.1); margin: 0 1.25rem;
+    }
+
+    /* Form inside cart panel */
+    .cart-form {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    .cart-form .form-label {
+      font-family:Poppins, sans-serif; font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--dark-maroon); font-weight: 600;
+    }
+    .cart-form .form-input,
+    .cart-form .form-select,
+    .cart-form .form-textarea {
+      font-family:Poppins, sans-serif; font-size: 0.95rem;
+      color: #3a2a2a; background: #fff;
+      border: 1px solid rgba(128,28,35,0.25); border-radius: 3px;
+      padding: 0.55rem 0.8rem; width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+    }
+    .cart-form .form-input:focus,
+    .cart-form .form-select:focus,
+    .cart-form .form-textarea:focus {
+      outline: none; border-color: var(--maroon);
+      box-shadow: 0 0 0 3px rgba(128,28,35,0.1);
+    }
+    .cart-form .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23801C23' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.8rem center;
+      padding-right: 2rem; cursor: pointer;
+    }
+    .cart-form .form-textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+    .cart-form .form-group { margin-bottom: 0.85rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .cart-form .form-message {
+      border-radius: 3px; padding: 0.7rem 0.9rem;
+      font-family:Poppins, sans-serif; font-size: 0.9rem;
+      margin-bottom: 0.75rem; display: none;
+    }
+    .cart-form .form-message.show { display: block; }
+    .cart-form .form-message--success { background: rgba(37,108,35,0.1); border: 1px solid rgba(37,108,35,0.3); color: #1a5218; }
+    .cart-form .form-message--error   { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.3); color: #9b2d20; }
+    .cart-form .form-error { font-family:Poppins, sans-serif; font-size: 0.8rem; color: #c0392b; display: none; }
+
+    /* Confirmation overlay inside cart panel */
+    .order-confirm {
+      display: none; padding: 1.5rem 1.25rem;
+    }
+    .order-confirm.visible { display: block; }
+    .order-confirm__icon  { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+    .order-confirm__title {
+      font-family:Poppins, sans-serif; font-size: 1.35rem;
+      font-weight: 700; color: #1a5218; margin: 0 0 0.3rem;
+    }
+    .order-confirm__ref   {
+      font-family:Poppins, sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.08em; color: var(--dark-maroon); margin: 0 0 0.75rem;
+    }
+    .order-confirm__detail {
+      font-family:Poppins, sans-serif; font-size: 0.9rem;
+      color: #3a2a2a; margin: 0.2rem 0; line-height: 1.4;
+    }
+    .order-confirm__note {
+      font-family:Poppins, sans-serif; font-size: 0.85rem;
+      font-style: italic; color: #5a4040;
+      margin-top: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid rgba(37,108,35,0.2);
+    }
+
+    /* Min order note */
+    .min-order-note {
+      font-family:Poppins, sans-serif; font-size: 0.8rem;
+      font-style: italic; color: #7a5a5a;
+      text-align: center; padding: 0.4rem 1.25rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .to-layout { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 0 4rem; }
+      .cart-panel { position: static; }
+    }
+    @media (max-width: 480px) {
+      .acc-item { padding: 0.55rem 1rem; gap: 0.5rem; }
+      .acc-panel__header { padding: 0.8rem 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ── Navbar ── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas logo" class="navbar__logo-img"
+             width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link active">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+      <div class="navbar__cta">
+        <button class="navbar__cart-btn"
+                onclick="document.querySelector('.cart-panel').scrollIntoView({behavior:'smooth'})"
+                aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </button>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Mobile Menu ── -->
+  <nav class="navbar__mobile-menu" id="mobile-menu"
+       role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+        <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      View Cart
+      <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+    </a>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero" aria-labelledby="to-hero-title">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Order Ahead</span>
+      <h1 class="page-hero__title" id="to-hero-title">Pre-Order Takeaway</h1>
+      <div class="page-hero__ornament" aria-hidden="true">
+        <span class="page-hero__ornament-dot"></span>
+      </div>
+      <p class="page-hero__sub">Build your order below and choose a pickup time — we'll have it freshly prepared and ready for you.</p>
+    </div>
+  </section>
+
+  <!-- ── Main ── -->
+  <main id="main-content" tabindex="-1">
+    <section class="form-page-bg" style="background:var(--cream);">
+      <div class="container">
+
+        <!-- Availability banner -->
+        <div class="avail-banner" id="avail-banner" role="alert" aria-live="polite">
+          <p class="avail-banner__title" id="avail-banner-title">We're currently closed</p>
+          <p class="avail-banner__body" id="avail-banner-body">
+            Online orders are available during opening hours. You're welcome to browse the menu and place an order closer to opening time.
+          </p>
+          <a href="tel:+35212345678" class="avail-banner__phone">+352 12 34 56 78</a>
+        </div>
+
+        <div class="to-layout" id="to-layout">
+
+          <!-- ── Left: Item Selection ── -->
+          <div>
+            <div class="acc-wrap fade-in" role="complementary" aria-label="Menu item selection">
+              <div class="acc-wrap__header">
+                <h2 class="acc-wrap__title">Select Items</h2>
+              </div>
+
+        <div class="acc-panel open" data-cat="starters">
+          <button class="acc-panel__header" aria-expanded="true" aria-controls="acc-body-starters">
+            <span class="acc-panel__title">Starters</span>
+            <span class="acc-panel__count" id="acc-count-starters"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-starters" role="region">
+          <div class="acc-item" data-id="starters-samosa" data-name="Samosa (2 pcs)" data-price="5.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Samosa (2 pcs)</span>
+              <span class="acc-item__price">€5.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Samosa (2 pcs)">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Samosa (2 pcs)">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-onion-bhaji" data-name="Onion Bhaji" data-price="5.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Onion Bhaji</span>
+              <span class="acc-item__price">€5.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Onion Bhaji">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Onion Bhaji">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-chicken-tikka" data-name="Chicken Tikka" data-price="8.50" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Chicken Tikka</span>
+              <span class="acc-item__price">€8.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Chicken Tikka">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Chicken Tikka">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-paneer-tikka" data-name="Paneer Tikka" data-price="8.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Paneer Tikka</span>
+              <span class="acc-item__price">€8.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Paneer Tikka">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Paneer Tikka">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-seekh-kebab" data-name="Seekh Kebab" data-price="9.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Seekh Kebab</span>
+              <span class="acc-item__price">€9.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Seekh Kebab">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Seekh Kebab">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-veg-spring-roll" data-name="Veg Spring Roll (2 pcs)" data-price="6.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Veg Spring Roll (2 pcs)</span>
+              <span class="acc-item__price">€6.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Veg Spring Roll (2 pcs)">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Veg Spring Roll (2 pcs)">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-fish-amritsari" data-name="Fish Amritsari" data-price="9.50" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Fish Amritsari</span>
+              <span class="acc-item__price">€9.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Fish Amritsari">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Fish Amritsari">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="starters-tandoori-prawns" data-name="Tandoori Prawns" data-price="12.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Tandoori Prawns</span>
+              <span class="acc-item__price">€12.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Tandoori Prawns">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Tandoori Prawns">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="mains">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-mains">
+            <span class="acc-panel__title">Mains</span>
+            <span class="acc-panel__count" id="acc-count-mains"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-mains" role="region">
+          <div class="acc-item" data-id="mains-butter-chicken" data-name="Butter Chicken" data-price="14.50" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Butter Chicken</span>
+              <span class="acc-item__price">€14.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Butter Chicken">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Butter Chicken">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-dal-makhani" data-name="Dal Makhani" data-price="11.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Dal Makhani</span>
+              <span class="acc-item__price">€11.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Dal Makhani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Dal Makhani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-palak-paneer" data-name="Palak Paneer" data-price="12.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Palak Paneer</span>
+              <span class="acc-item__price">€12.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Palak Paneer">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Palak Paneer">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-lamb-rogan-josh" data-name="Lamb Rogan Josh" data-price="16.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Lamb Rogan Josh</span>
+              <span class="acc-item__price">€16.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Lamb Rogan Josh">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Lamb Rogan Josh">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-chicken-tikka-masala" data-name="Chicken Tikka Masala" data-price="14.50" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Chicken Tikka Masala</span>
+              <span class="acc-item__price">€14.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Chicken Tikka Masala">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Chicken Tikka Masala">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-chana-masala" data-name="Chana Masala" data-price="11.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Chana Masala</span>
+              <span class="acc-item__price">€11.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Chana Masala">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Chana Masala">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-mutton-korma" data-name="Mutton Korma" data-price="17.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Mutton Korma</span>
+              <span class="acc-item__price">€17.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mutton Korma">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mutton Korma">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-fish-curry" data-name="Fish Curry" data-price="15.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Fish Curry</span>
+              <span class="acc-item__price">€15.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Fish Curry">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Fish Curry">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-egg-curry" data-name="Egg Curry" data-price="10.50" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Egg Curry</span>
+              <span class="acc-item__price">€10.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Egg Curry">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Egg Curry">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="mains-mixed-veg-curry" data-name="Mixed Veg Curry" data-price="10.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Mixed Veg Curry</span>
+              <span class="acc-item__price">€10.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mixed Veg Curry">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mixed Veg Curry">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="biryani">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-biryani">
+            <span class="acc-panel__title">Rice & Biryani</span>
+            <span class="acc-panel__count" id="acc-count-biryani"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-biryani" role="region">
+          <div class="acc-item" data-id="biryani-chicken" data-name="Chicken Biryani" data-price="15.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Chicken Biryani</span>
+              <span class="acc-item__price">€15.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Chicken Biryani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Chicken Biryani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="biryani-mutton" data-name="Mutton Biryani" data-price="17.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Mutton Biryani</span>
+              <span class="acc-item__price">€17.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mutton Biryani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mutton Biryani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="biryani-veg" data-name="Vegetable Biryani" data-price="12.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Vegetable Biryani</span>
+              <span class="acc-item__price">€12.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Vegetable Biryani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Vegetable Biryani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="biryani-prawn" data-name="Prawn Biryani" data-price="18.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Prawn Biryani</span>
+              <span class="acc-item__price">€18.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Prawn Biryani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Prawn Biryani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="biryani-egg" data-name="Egg Biryani" data-price="13.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Egg Biryani</span>
+              <span class="acc-item__price">€13.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Egg Biryani">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Egg Biryani">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="rice-steamed" data-name="Steamed Basmati Rice" data-price="3.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Steamed Basmati Rice</span>
+              <span class="acc-item__price">€3.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Steamed Basmati Rice">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Steamed Basmati Rice">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="breads">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-breads">
+            <span class="acc-panel__title">Breads</span>
+            <span class="acc-panel__count" id="acc-count-breads"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-breads" role="region">
+          <div class="acc-item" data-id="breads-butter-naan" data-name="Butter Naan" data-price="2.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Butter Naan</span>
+              <span class="acc-item__price">€2.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Butter Naan">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Butter Naan">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="breads-garlic-naan" data-name="Garlic Naan" data-price="3.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Garlic Naan</span>
+              <span class="acc-item__price">€3.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Garlic Naan">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Garlic Naan">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="breads-tandoori-roti" data-name="Tandoori Roti" data-price="2.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Tandoori Roti</span>
+              <span class="acc-item__price">€2.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Tandoori Roti">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Tandoori Roti">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="breads-aloo-paratha" data-name="Aloo Paratha" data-price="4.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Aloo Paratha</span>
+              <span class="acc-item__price">€4.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Aloo Paratha">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Aloo Paratha">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="breads-puri" data-name="Puri (2 pcs)" data-price="3.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Puri (2 pcs)</span>
+              <span class="acc-item__price">€3.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Puri (2 pcs)">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Puri (2 pcs)">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="breads-laccha-paratha" data-name="Laccha Paratha" data-price="3.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Laccha Paratha</span>
+              <span class="acc-item__price">€3.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Laccha Paratha">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Laccha Paratha">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="thali">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-thali">
+            <span class="acc-panel__title">Thali Platters</span>
+            <span class="acc-panel__count" id="acc-count-thali"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-thali" role="region">
+          <div class="acc-item" data-id="thali-veg" data-name="Veg Thali" data-price="16.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Veg Thali</span>
+              <span class="acc-item__price">€16.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Veg Thali">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Veg Thali">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="thali-nonveg" data-name="Non-Veg Thali" data-price="19.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Non-Veg Thali</span>
+              <span class="acc-item__price">€19.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Non-Veg Thali">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Non-Veg Thali">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="thali-royal" data-name="Royal Thali" data-price="24.00" data-veg="0">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--nonveg" aria-label="Non-vegetarian"></span>
+              <span class="acc-item__name">Royal Thali</span>
+              <span class="acc-item__price">€24.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Royal Thali">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Royal Thali">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="desserts">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-desserts">
+            <span class="acc-panel__title">Desserts</span>
+            <span class="acc-panel__count" id="acc-count-desserts"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-desserts" role="region">
+          <div class="acc-item" data-id="desserts-gulab-jamun" data-name="Gulab Jamun (2 pcs)" data-price="4.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Gulab Jamun (2 pcs)</span>
+              <span class="acc-item__price">€4.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Gulab Jamun (2 pcs)">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Gulab Jamun (2 pcs)">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="desserts-kheer" data-name="Kheer" data-price="4.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Kheer</span>
+              <span class="acc-item__price">€4.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Kheer">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Kheer">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="desserts-rasmalai" data-name="Rasmalai (2 pcs)" data-price="5.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Rasmalai (2 pcs)</span>
+              <span class="acc-item__price">€5.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Rasmalai (2 pcs)">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Rasmalai (2 pcs)">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="desserts-mango-kulfi" data-name="Mango Kulfi" data-price="4.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Mango Kulfi</span>
+              <span class="acc-item__price">€4.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mango Kulfi">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mango Kulfi">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="acc-panel" data-cat="drinks">
+          <button class="acc-panel__header" aria-expanded="false" aria-controls="acc-body-drinks">
+            <span class="acc-panel__title">Drinks</span>
+            <span class="acc-panel__count" id="acc-count-drinks"></span>
+            <svg class="acc-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="acc-panel__body" id="acc-body-drinks" role="region">
+          <div class="acc-item" data-id="drinks-mango-lassi" data-name="Mango Lassi" data-price="4.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Mango Lassi</span>
+              <span class="acc-item__price">€4.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mango Lassi">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mango Lassi">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="drinks-rose-lassi" data-name="Rose Lassi" data-price="4.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Rose Lassi</span>
+              <span class="acc-item__price">€4.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Rose Lassi">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Rose Lassi">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="drinks-masala-chai" data-name="Masala Chai" data-price="3.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Masala Chai</span>
+              <span class="acc-item__price">€3.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Masala Chai">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Masala Chai">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="drinks-fresh-lime-soda" data-name="Fresh Lime Soda" data-price="3.50" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Fresh Lime Soda</span>
+              <span class="acc-item__price">€3.50</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Fresh Lime Soda">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Fresh Lime Soda">+</button>
+            </div>
+          </div>
+          <div class="acc-item" data-id="drinks-water" data-name="Mineral Water" data-price="2.00" data-veg="1">
+            <div class="acc-item__info">
+              <span class="acc-dot acc-dot--veg" aria-label="Vegetarian"></span>
+              <span class="acc-item__name">Mineral Water</span>
+              <span class="acc-item__price">€2.00</span>
+            </div>
+            <div class="acc-item__stepper">
+              <button class="stepper__btn stepper__btn--dec" aria-label="Remove one Mineral Water">−</button>
+              <span class="stepper__val">0</span>
+              <button class="stepper__btn stepper__btn--inc" aria-label="Add one Mineral Water">+</button>
+            </div>
+          </div>
+          </div>
+        </div>
+
+            </div><!-- /.acc-wrap -->
+          </div>
+
+          <!-- ── Right: Cart Summary ── -->
+          <div>
+            <div class="cart-panel form-double-border fade-in fade-in--delay-2" id="cart-panel">
+              <div class="cart-panel__header">
+                <h2 class="cart-panel__title">Your Order</h2>
+              </div>
+
+              <!-- Line items -->
+              <div class="cart-lines" id="cart-lines" aria-live="polite" aria-label="Cart contents">
+                <p class="cart-empty" id="cart-empty">No items yet — add dishes from the menu.</p>
+              </div>
+
+              <!-- Min order note -->
+              <p class="min-order-note" id="min-order-note"></p>
+
+              <!-- Total -->
+              <div class="cart-total">
+                <span class="cart-total__label">Order Total</span>
+                <span class="cart-total__amount" id="cart-total-amount">€0.00</span>
+              </div>
+
+              <div class="cart-divider"></div>
+
+              <!-- Order form -->
+              <form class="cart-form" id="order-form" novalidate autocomplete="on">
+                <input type="hidden" name="csrf_token" id="csrf-order-input" />
+
+                <div class="form-group">
+                  <label class="form-label" for="pickup-time">Pickup Time <span style="color:var(--maroon)">*</span></label>
+                  <select class="form-select" id="pickup-time" name="pickup_time" required>
+                    <option value="">Select pickup time</option>
+                  </select>
+                  <span class="form-error" id="err-pickup"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="order-name">Your Name <span style="color:var(--maroon)">*</span></label>
+                  <input class="form-input" type="text" id="order-name" name="name"
+                         placeholder="Full name" autocomplete="name" required />
+                  <span class="form-error" id="err-order-name"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="order-phone">Phone <span style="color:var(--maroon)">*</span></label>
+                  <input class="form-input" type="tel" id="order-phone" name="phone"
+                         placeholder="+352 …" autocomplete="tel" required />
+                  <span class="form-error" id="err-order-phone"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="order-email">Email <span style="color:var(--maroon)">*</span></label>
+                  <input class="form-input" type="email" id="order-email" name="email"
+                         placeholder="you@example.com" autocomplete="email" required />
+                  <span class="form-error" id="err-order-email"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="order-notes">Special Instructions</label>
+                  <textarea class="form-textarea" id="order-notes" name="notes"
+                            placeholder="Allergies, spice level, extra sauce…"></textarea>
+                </div>
+
+                <div class="form-message" id="order-message" role="alert"></div>
+
+                <button type="submit" class="btn btn--primary btn--full" id="order-submit" disabled>
+                  <span class="btn__text">Place Pre-Order</span>
+                </button>
+              </form>
+
+              <!-- Confirmation (shown on success) -->
+              <div class="order-confirm" id="order-confirm" role="status" aria-live="polite">
+                <span class="order-confirm__icon" aria-hidden="true">✓</span>
+                <h3 class="order-confirm__title">Order Received!</h3>
+                <p class="order-confirm__ref"  id="order-confirm-ref"></p>
+                <p class="order-confirm__detail" id="order-confirm-pickup"></p>
+                <p class="order-confirm__detail" id="order-confirm-total"></p>
+                <p class="order-confirm__note">
+                  We'll send a summary to your email. Your order will be ready at the selected time — please arrive a few minutes early.
+                </p>
+              </div>
+
+            </div><!-- /.cart-panel -->
+          </div>
+
+        </div><!-- /.to-layout -->
+      </div><!-- /.container -->
+    </section>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__logo-text">
+          <span class="footer__logo-name">Bhimas</span>
+          <span class="footer__logo-tagline">Traditional Indian Kitchen</span>
+        </div>
+        <p class="footer__about">Authentic South Indian cuisine crafted with love and tradition, right in the heart of Luxembourg.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h3 class="footer__col-title">Explore</h3>
+        <a href="index.html"       class="footer__link">Home</a>
+        <a href="story.html"       class="footer__link">Our Story</a>
+        <a href="menu.html"        class="footer__link">Menu</a>
+        <a href="reservation.html" class="footer__link">Reserve a Table</a>
+        <a href="contact.html"     class="footer__link">Contact</a>
+      </nav>
+      <nav class="footer__col" aria-label="Our Menu">
+        <h3 class="footer__col-title">Our Menu</h3>
+        <a href="menu-starters.html"     class="footer__link">Starters</a>
+        <a href="menu-mains.html"        class="footer__link">Mains</a>
+        <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+        <a href="menu-breads.html"       class="footer__link">Breads</a>
+        <a href="menu-thali.html"        class="footer__link">Thali Platters</a>
+        <a href="menu-desserts.html"     class="footer__link">Desserts</a>
+        <a href="menu-drinks.html"       class="footer__link">Drinks</a>
+      </nav>
+      <div class="footer__col" aria-label="Visit Us">
+        <h3 class="footer__col-title">Visit Us</h3>
+        <p class="footer__address">123 Rue de la Gare<br />Luxembourg City<br />L-1616, Luxembourg</p>
+        <a href="tel:+35212345678"             class="footer__link">+352 12 34 56 78</a>
+        <a href="mailto:hello@bhimas.lu" class="footer__link">hello@bhimas.lu</a>
+        <p class="footer__hours">Mon–Thu: 11:00 – 22:00<br />Fri–Sat: 11:00 – 23:00<br />Sun: 12:00 – 21:00</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copy">&copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- No floating cart-bar on takeaway page — cart IS this page -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── CSRF ── */
+    var csrfOrder = document.getElementById('csrf-order-input');
+    if (csrfOrder) csrfOrder.value = getCsrfToken();
+
+    /* ── Cart state ── (keyed by item id) */
+    var cart = {};   // id -> {id, name, price, qty}
+
+    /* ── Render cart panel — DOM refs (must be declared before loadFromStorage calls renderCart) ── */
+    var linesEl   = document.getElementById('cart-lines');
+    var emptyEl   = document.getElementById('cart-empty');
+    var totalEl   = document.getElementById('cart-total-amount');
+    var submitBtn = document.getElementById('order-submit');
+    var minNote   = document.getElementById('min-order-note');
+    var _minOrder = 10.00;
+
+    /* ── Load existing cart from localStorage (from menu pages) ── */
+    (function loadFromStorage() {
+      var stored = BhimasCart.getItems();
+      stored.forEach(function (item) {
+        if (item.qty > 0) {
+          cart[item.id] = { id: item.id, name: item.name, price: parseFloat(item.price), qty: item.qty };
+          // Sync stepper UI
+          var row = document.querySelector('[data-id="' + item.id + '"]');
+          if (row) {
+            row.querySelector('.stepper__val').textContent = item.qty;
+          }
+        }
+      });
+      renderCart();
+    })();
+
+    /* ── Accordion toggle ── */
+    document.querySelectorAll('.acc-panel__header').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var panel = this.closest('.acc-panel');
+        var open  = panel.classList.toggle('open');
+        this.setAttribute('aria-expanded', open);
+      });
+    });
+
+    /* ── Stepper delegation ── */
+    document.querySelectorAll('.acc-item').forEach(function (row) {
+      var decBtn = row.querySelector('.stepper__btn--dec');
+      var incBtn = row.querySelector('.stepper__btn--inc');
+      var valEl  = row.querySelector('.stepper__val');
+      var id     = row.dataset.id;
+      var name   = row.dataset.name;
+      var price  = parseFloat(row.dataset.price);
+
+      function updateQty(delta) {
+        var current = cart[id] ? cart[id].qty : 0;
+        var next    = Math.max(0, current + delta);
+        if (next === 0) {
+          delete cart[id];
+        } else {
+          cart[id] = { id: id, name: name, price: price, qty: next };
+        }
+        valEl.textContent = next;
+        // Update cat count badge
+        updateCatBadge(row.closest('.acc-panel').dataset.cat);
+        renderCart();
+        // Sync with BhimasCart
+        syncToStorage();
+      }
+
+      decBtn.addEventListener('click', function () { updateQty(-1); });
+      incBtn.addEventListener('click', function () { updateQty(+1); });
+    });
+
+    function updateCatBadge(catKey) {
+      var count = 0;
+      document.querySelectorAll('.acc-panel[data-cat="' + catKey + '"] .acc-item').forEach(function (r) {
+        count += (cart[r.dataset.id] ? cart[r.dataset.id].qty : 0);
+      });
+      var badge = document.getElementById('acc-count-' + catKey);
+      if (badge) {
+        badge.textContent = count > 0 ? count : '';
+        badge.classList.toggle('visible', count > 0);
+      }
+    }
+
+    /* ── Fetch settings → set min order, populate pickup slots ── */
+    fetchSettings().then(function (s) {
+      _minOrder = parseFloat(s.min_order_amount || '10.00');
+      renderCart();
+      // Populate pickup slots — get-settings.php already normalises
+      // open_time / close_time to today's actual hours from the DB.
+      var open  = s.open_time  || '11:00';
+      var close = s.close_time || '22:00';
+
+      if (s.takeaway_enabled === '0' || s.takeaway_enabled === 0) {
+        document.getElementById('avail-banner-title').textContent = 'Takeaway Unavailable';
+        document.getElementById('avail-banner-body').textContent  = 'We are not currently accepting online orders. Please call us.';
+        document.getElementById('avail-banner').classList.add('visible');
+      }
+
+      var slots = generatePickupSlots({
+        openTime:    open,
+        closeTime:   close,
+        intervalMin: parseInt(s.pickup_interval_mins || '15', 10),
+        lastSlotMin: parseInt(s.last_pickup_mins_before_close || '30', 10)
+      });
+      populateTimeSelect(document.getElementById('pickup-time'), slots, 'Select pickup time');
+    });
+
+    function renderCart() {
+      var items = Object.values(cart);
+      var total = items.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+
+      // Clear lines (preserve empty msg)
+      var existing = linesEl.querySelectorAll('.cart-line');
+      existing.forEach(function (el) { el.remove(); });
+
+      if (items.length === 0) {
+        emptyEl.style.display = 'block';
+        totalEl.textContent = '€0.00';
+        submitBtn.disabled = true;
+        minNote.textContent = 'Minimum order: €' + _minOrder.toFixed(2);
+        return;
+      }
+      emptyEl.style.display = 'none';
+
+      items.forEach(function (item) {
+        var div = document.createElement('div');
+        div.className = 'cart-line';
+        div.innerHTML =
+          '<span class="cart-line__name">' + item.name + '</span>' +
+          '<span class="cart-line__qty">x' + item.qty + '</span>' +
+          '<span class="cart-line__sub">€' + (item.price * item.qty).toFixed(2) + '</span>';
+        linesEl.appendChild(div);
+      });
+
+      totalEl.textContent = '€' + total.toFixed(2);
+
+      var meetsMin = total >= _minOrder;
+      submitBtn.disabled = !meetsMin;
+      minNote.textContent = meetsMin
+        ? ''
+        : 'Minimum order €' + _minOrder.toFixed(2) + ' — add €' + (_minOrder - total).toFixed(2) + ' more.';
+    }
+
+    function syncToStorage() {
+      // Mirror page cart into BhimasCart localStorage
+      BhimasCart.clear();
+      Object.values(cart).forEach(function (item) {
+        for (var i = 0; i < item.qty; i++) {
+          BhimasCart.addItem({ id: item.id, name: item.name, price: item.price });
+        }
+      });
+    }
+
+    /* ── Order submission ── */
+    var orderForm = document.getElementById('order-form');
+    orderForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var items = Object.values(cart);
+      if (items.length === 0) {
+        BhimasToast.error('Please add at least one item to your order.');
+        return;
+      }
+
+      // Validate
+      var valid = true;
+      [
+        { id:'pickup-time',  errId:'err-pickup',       check: function(v) { return v ? null : 'Please select a pickup time.'; } },
+        { id:'order-name',   errId:'err-order-name',   check: function(v) { return v.trim().length > 1 ? null : 'Please enter your name.'; } },
+        { id:'order-phone',  errId:'err-order-phone',  check: function(v) { return v.trim().length > 5 ? null : 'Please enter a phone number.'; } },
+        { id:'order-email',  errId:'err-order-email',  check: function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? null : 'Please enter a valid email.'; } },
+      ].forEach(function (f) {
+        var input = document.getElementById(f.id);
+        var errEl = document.getElementById(f.errId);
+        var err   = f.check(input.value);
+        if (err) {
+          input.style.borderColor = '#c0392b'; errEl.textContent = err; errEl.style.display = 'block'; valid = false;
+        } else {
+          input.style.borderColor = ''; errEl.textContent = ''; errEl.style.display = 'none';
+        }
+      });
+      if (!valid) return;
+
+      csrfOrder.value = getCsrfToken();
+      var btn = document.getElementById('order-submit');
+      BhimasForms.setLoading(btn, 'Placing order…');
+
+      var total = Object.values(cart).reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+      var payload = {
+        csrf_token:  getCsrfToken(),
+        pickup_time: document.getElementById('pickup-time').value,
+        name:        document.getElementById('order-name').value,
+        phone:       document.getElementById('order-phone').value,
+        email:       document.getElementById('order-email').value,
+        notes:       document.getElementById('order-notes').value,
+        total:       total.toFixed(2),
+        items:       items.map(function (i) { return { id: i.id, name: i.name, price: i.price, qty: i.qty }; })
+      };
+
+      fetch('php/submit-order.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        credentials: 'same-origin',
+        body: JSON.stringify(payload)
+      }))
+      .then(function (r) {
+        var status = r.status;
+        return r.text().then(function (text) {
+          var json;
+          try {
+            json = JSON.parse(text);
+          } catch (e) {
+            // PHP returned something that isn't JSON — log it so we can debug
+            console.error('[Bhimas order] PHP returned non-JSON (HTTP ' + status + '):\n', text.substring(0, 3000));
+            throw new Error(
+              status === 0
+                ? 'Could not reach the server. Make sure MAMP is running and you\'re using http://localhost:8888/bhimas/'
+                : 'Server error (HTTP ' + status + '). Open the browser console (F12 → Console) to see the PHP response.'
+            );
+          }
+          return json;
+        });
+      })
+      .then(function (json) {
+        BhimasForms.resetLoading(btn);
+        if (json && json.success) {
+          // Hide form sections, show confirm
+          orderForm.style.display = 'none';
+          linesEl.style.display   = 'none';
+          document.querySelector('.cart-total').style.display = 'none';
+          document.querySelector('.cart-divider').style.display = 'none';
+          minNote.style.display = 'none';
+          var confirm = document.getElementById('order-confirm');
+          confirm.classList.add('visible');
+          document.getElementById('order-confirm-ref').textContent    = 'Order ref: ' + (json.ref || '—');
+          document.getElementById('order-confirm-pickup').textContent = '🕐 Pickup at ' + payload.pickup_time;
+          document.getElementById('order-confirm-total').textContent  = '💳 Total: €' + payload.total;
+          // Clear localStorage cart
+          BhimasCart.clear();
+          cart = {};
+          BhimasToast.success('Order placed! See you soon.');
+        } else {
+          BhimasForms.showError(orderForm, json.message || 'Something went wrong. Please try again or call us.');
+        }
+      })
+      .catch(function (err) {
+        BhimasForms.resetLoading(btn);
+        BhimasForms.showError(orderForm, err.message || 'Network error. Please check your connection and try again.');
+      });
+    });
+
+  })();
+  </script>
+  <!-- ── Floating Cart Button ──────────────────────────────── -->
+  <a href="takeaway.html" class="cart-fab" id="cart-fab" aria-label="View cart">
+    <span class="cart-fab__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </span>
+    <span class="cart-fab__badge" id="cart-fab-count">0</span>
+  </a>
+</body>
+</html>

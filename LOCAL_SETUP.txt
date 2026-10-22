@@ -1,0 +1,298 @@
+================================================================
+BHIMAS TRADITIONAL INDIAN KITCHEN
+Local Development Setup Guide
+================================================================
+
+REQUIREMENTS
+------------
+One of the following local server stacks:
+  - XAMPP  (Windows / macOS / Linux) — https://www.apachefriends.org
+  - WAMP   (Windows only)            — https://www.wampserver.com
+  - MAMP   (macOS / Windows)         — https://www.mamp.info
+
+PHP 8.0 or higher is required.
+MySQL 5.7+ or MariaDB 10.3+ is required.
+
+
+================================================================
+STEP 1 — PLACE THE PROJECT FOLDER
+================================================================
+
+XAMPP (Windows):
+  Copy the "Bhimas kitchen" folder to:
+    C:\xampp\htdocs\bhimas\
+
+XAMPP (macOS):
+  Copy the "Bhimas kitchen" folder to:
+    /Applications/XAMPP/htdocs/bhimas/
+
+WAMP (Windows):
+  Copy the "Bhimas kitchen" folder to:
+    C:\wamp64\www\bhimas\
+
+MAMP (macOS):
+  Copy the "Bhimas kitchen" folder to:
+    /Applications/MAMP/htdocs/bhimas/
+
+MAMP (Windows):
+  Copy the "Bhimas kitchen" folder to:
+    C:\MAMP\htdocs\bhimas\
+
+IMPORTANT: The folder must be named "bhimas" (lowercase, no spaces)
+so the URLs below work correctly.
+
+
+================================================================
+STEP 2 — START APACHE AND MYSQL
+================================================================
+
+XAMPP:
+  1. Open the XAMPP Control Panel
+  2. Click "Start" next to Apache
+  3. Click "Start" next to MySQL
+  4. Both should show green "Running" status
+
+WAMP:
+  1. Click the WampServer icon in the system tray
+  2. Click "Start All Services"
+  3. The icon turns green when all services are running
+
+MAMP:
+  1. Open the MAMP application
+  2. Click "Start Servers"
+  3. The Apache and MySQL lights turn green
+
+TIP: If Apache fails to start, port 80 may be in use by another
+program (e.g. Skype, IIS). Change Apache's port to 8080 in the
+control panel, then use http://localhost:8080/bhimas/ instead.
+
+
+================================================================
+STEP 3 — CREATE THE DATABASE
+================================================================
+
+1. Open phpMyAdmin in your browser:
+     XAMPP: http://localhost/phpmyadmin/
+     WAMP:  http://localhost/phpmyadmin/
+     MAMP:  http://localhost:8888/phpMyAdmin/
+
+2. Click "New" in the left panel to create a new database.
+
+3. Enter the database name:
+     bhimas_db
+
+4. Set collation to:
+     utf8mb4_unicode_ci
+
+5. Click "Create".
+
+6. Click on "bhimas_db" in the left panel to select it.
+
+7. Click the "Import" tab at the top.
+
+8. Click "Choose File" and select:
+     bhimas/database.sql
+
+9. Click "Go" (or "Import") at the bottom of the page.
+
+10. You should see a success message:
+      "Import has been successfully finished.
+       4 tables created, N rows inserted."
+
+
+================================================================
+STEP 4 — CONFIGURE DATABASE CREDENTIALS
+================================================================
+
+Open this file in a text editor (Notepad, VS Code, etc.):
+  bhimas/php/config.php
+
+Find the DATABASE CONSTANTS section (around line 40) and edit:
+
+  define('DB_HOST', 'localhost');   // Leave as localhost
+  define('DB_NAME', 'bhimas_db');   // Must match what you created
+  define('DB_USER', 'root');        // Default for XAMPP/WAMP/MAMP
+  define('DB_PASS', '');            // Empty by default in XAMPP/WAMP
+                                    // MAMP default password is "root"
+
+MAMP users: change DB_PASS to 'root':
+  define('DB_PASS', 'root');
+
+MAMP also uses port 8889 for MySQL. If you get connection errors,
+you may also need to set:
+  define('DB_PORT', 8889);
+
+Save the file after making changes.
+
+
+================================================================
+STEP 5 — SET FOLDER PERMISSIONS (for hero image upload)
+================================================================
+
+The admin Settings page allows uploading a hero image.
+The image is saved to the /images/ folder. This folder must be
+writable by the web server.
+
+XAMPP / WAMP (Windows):
+  Windows generally allows XAMPP/WAMP to write files without
+  any extra steps. No action needed.
+
+XAMPP / MAMP (macOS / Linux):
+  Open Terminal and run:
+    chmod 755 /Applications/XAMPP/htdocs/bhimas/images/
+  Or for MAMP:
+    chmod 755 /Applications/MAMP/htdocs/bhimas/images/
+
+If the /images/ folder doesn't exist yet, create it:
+  mkdir /Applications/XAMPP/htdocs/bhimas/images/
+  chmod 755 /Applications/XAMPP/htdocs/bhimas/images/
+
+
+================================================================
+STEP 6 — ACCESS THE SITE
+================================================================
+
+Main website:
+  http://localhost/bhimas/
+
+Individual pages:
+  http://localhost/bhimas/index.html          Homepage
+  http://localhost/bhimas/menu.html           Menu
+  http://localhost/bhimas/reservation.html    Book a Table
+  http://localhost/bhimas/takeaway.html       Pre-Order
+  http://localhost/bhimas/contact.html        Contact
+
+Admin panel:
+  http://localhost/bhimas/admin/
+
+Admin login:
+  URL:      http://localhost/bhimas/admin/login.php
+  Password: bhimas_admin_2025
+
+  (Change this by editing ADMIN_PASSWORD in php/config.php,
+   or set the environment variable ADMIN_PASSWORD on your server.)
+
+
+================================================================
+COMMON ISSUES AND FIXES
+================================================================
+
+PROBLEM: Blank white page when visiting a PHP file
+FIX: PHP errors are hidden in production mode. To see them:
+  Open php/config.php and find:
+    define('BHIMAS_ENV', getenv('BHIMAS_ENV') ?: 'production');
+  Change 'production' to 'development':
+    define('BHIMAS_ENV', 'development');
+  Reload the page — the error message will now appear.
+
+PROBLEM: "Could not connect to database" or 500 error
+FIX: Check your credentials in php/config.php (Step 4 above).
+  Also verify MySQL is running in your control panel.
+  Also check that the database name matches exactly: bhimas_db
+
+PROBLEM: "Access denied for user 'root'@'localhost'"
+FIX: Your MySQL root password may not be empty.
+  In phpMyAdmin go to User Accounts, click Edit Privileges for
+  root@localhost, change the password, and update config.php.
+
+PROBLEM: Can't see the site — "This site can't be reached"
+FIX: Apache is not running. Open your control panel and start it.
+  If port 80 is in use, change Apache's port to 8080 and access
+  the site via http://localhost:8080/bhimas/
+
+PROBLEM: "404 Not Found" for PHP files but HTML works
+FIX: PHP module is not loaded. In XAMPP, click "Config" next to
+  Apache, open httpd.conf, and ensure this line is uncommented:
+    LoadModule php_module modules/libphp.so
+
+PROBLEM: Form submissions show blank page / no response
+FIX: CSRF token mismatch if session isn't persisting.
+  Check that session.save_path is writable (usually /tmp).
+  Ensure cookies are enabled in your browser.
+
+PROBLEM: Hero image upload fails in admin settings
+FIX: The /images/ folder must be writable (see Step 5).
+  Also check PHP's upload_max_filesize and post_max_size are
+  at least 6M in your php.ini (XAMPP: PHP tab → php.ini).
+
+PROBLEM: Admin login page redirects back to itself
+FIX: Session is not starting. Check that session.save_path
+  exists and is writable. On macOS, try:
+    sudo chmod 777 /var/folders (or your PHP session save path)
+
+PROBLEM: Emails not sending (booking/order confirmations)
+FIX: Local PHP mail() requires a local mail server which isn't
+  available in XAMPP/WAMP/MAMP by default. Emails will silently
+  fail locally — this is normal. They will work on a live server
+  with sendmail/postfix configured.
+  For local testing: use a mail catching tool like MailHog or
+  Mailtrap (update SMTP settings in php/config.php).
+
+
+================================================================
+DEVELOPMENT TIPS
+================================================================
+
+Enable debug mode (shows PHP errors):
+  In php/config.php, set BHIMAS_ENV to 'development'
+
+Admin password:
+  Set via environment variable ADMIN_PASSWORD, or edit the
+  default in php/config.php line ~59.
+
+Database changes:
+  After modifying database.sql, re-import it in phpMyAdmin
+  (the script uses DROP TABLE IF EXISTS, so it's safe to
+  re-run — but all data will be lost).
+
+Currency / timezone note:
+  The PHP config.php has legacy UK defaults. All page content
+  and PHP backend files correctly use EUR (€) and
+  Europe/Luxembourg timezone. Do not change the per-file
+  DateTimeZone calls in the PHP submit handlers.
+
+================================================================
+FOLDER STRUCTURE REFERENCE
+================================================================
+
+bhimas/
+├── index.html              Homepage
+├── story.html              Our Story
+├── menu.html               Menu categories
+├── menu-starters.html      } Individual
+├── menu-mains.html         } menu
+├── menu-rice-biryani.html  } category
+├── menu-breads.html        } pages
+├── menu-thali.html         }
+├── menu-desserts.html      }
+├── menu-drinks.html        }
+├── reservation.html        Table booking
+├── takeaway.html           Pre-order
+├── contact.html            Contact form
+├── css/
+│   ├── style.css           Global design system
+│   └── menu.css            Menu-specific styles
+├── js/
+│   └── main.js             Cart, settings, forms, utilities
+├── images/                 Site images (must be writable)
+├── php/
+│   ├── config.php          DB credentials + shared helpers
+│   ├── get-settings.php    Public settings API
+│   ├── submit-booking.php  Reservation form handler
+│   ├── submit-order.php    Takeaway order handler
+│   └── submit-contact.php  Contact form handler
+├── admin/
+│   ├── admin.css           Admin panel styles
+│   ├── _helpers.php        Admin layout + email helpers
+│   ├── login.php           Admin login
+│   ├── logout.php          Admin logout
+│   ├── index.php           Dashboard
+│   ├── bookings.php        Manage reservations
+│   ├── orders.php          Manage orders
+│   ├── messages.php        Contact messages
+│   └── settings.php        Site settings + hero upload
+├── database.sql            Full DB schema + seed data
+├── .htaccess               Security + compression + caching
+└── LOCAL_SETUP.txt         This file
+
+================================================================

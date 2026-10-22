@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mains | Bhimas Traditional Indian Kitchen</title>
+  <meta name="description" content="Discover Bhimas' full selection of main courses — butter chicken, dal makhani, lamb rogan josh, palak paneer and more authentic Indian curries in Luxembourg." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/menu-mains.html" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Mains | Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="Discover Bhimas' full selection of main courses — butter chicken, dal makhani, lamb rogan josh, palak paneer and more authentic Indian curries in Luxembourg." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta property="og:url"         content="https://bhimas.lu/menu-mains.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <meta name="csrf-token" content="" />
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+  <link rel="stylesheet" href="css/menu.css?v=10005" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas logo" class="navbar__logo-img"
+             width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link active">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="navbar__mobile-menu" id="mobile-menu"
+       role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+        <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      View Cart
+      <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+    </a>
+  </nav>
+
+  <!-- Category Hero -->
+  <section class="cat-hero" aria-labelledby="cat-hero-title"
+           style="background-image:url('https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=1400&q=80&fit=crop');">
+    <nav class="cat-hero__breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="menu.html">Menu</a>
+      <span aria-hidden="true">›</span>
+      <strong>Mains</strong>
+    </nav>
+    <div class="cat-hero__ornament" aria-hidden="true">
+      <span class="cat-hero__ornament-dot"></span>
+    </div>
+    <h1 class="cat-hero__title" id="cat-hero-title">Mains</h1>
+    <p class="cat-hero__tagline">Slow-cooked, deeply spiced and rich with tradition — the heart of our kitchen.</p>
+    <a href="menu.html" class="cat-hero__back" aria-label="Back to full menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      All Categories
+    </a>
+  </section>
+
+  
+  <!-- ── Category quick-nav ── -->
+  <nav class="cat-nav" aria-label="Menu categories">
+    <ul class="cat-nav__list">
+      <li><a href="menu-starters.html"     class="cat-nav__link ">Starters</a></li>
+      <li><a href="menu-mains.html"        class="cat-nav__link active">Mains</a></li>
+      <li><a href="menu-rice-biryani.html" class="cat-nav__link ">Rice &amp; Biryani</a></li>
+      <li><a href="menu-breads.html"       class="cat-nav__link ">Breads</a></li>
+      <li><a href="menu-thali.html"        class="cat-nav__link ">Thali</a></li>
+      <li><a href="menu-desserts.html"     class="cat-nav__link ">Desserts</a></li>
+      <li><a href="menu-drinks.html"       class="cat-nav__link ">Drinks</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content" tabindex="-1">
+
+    <!-- Allergen strip -->
+    <div class="allergen-strip">
+      <div class="allergen-strip__inner container">
+        <div class="allergen-strip__legend">
+          <span class="allergen-strip__item">
+            <span class="allergen-strip__dot allergen-strip__dot--veg" aria-label="Vegetarian"></span>
+            Vegetarian
+          </span>
+          <span class="allergen-strip__item">
+            <span class="allergen-strip__dot allergen-strip__dot--nonveg" aria-label="Non-vegetarian"></span>
+            Non-Vegetarian
+          </span>
+        </div>
+        <p class="allergen-strip__note">
+          Prices include VAT. Allergen info available on request.
+        </p>
+      </div>
+    </div>
+
+    <!-- Items grid -->
+    <section class="cat-section" aria-label="Mains menu items">
+      <div class="container">
+        <div class="items-grid">
+
+          <article class="item-card fade-in" aria-label="Butter Chicken">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80&fit=crop" alt="Butter chicken curry in a bowl" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--bestseller">Bestseller</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Butter Chicken</h3>
+              <p class="item-card__desc">Succulent chicken in a rich, velvety tomato and butter sauce — the dish that won over the world.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€14.50</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Succulent chicken in a rich, velvety tomato and butter sauce — the dish that won over the world." data-item-diet="nonveg" data-item-tags="Bestseller"
+                        data-item-id="mains-butter-chicken"
+                        data-item-name="Butter Chicken"
+                        data-item-price="14.50"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80&fit=crop"
+                        aria-label="Add Butter Chicken to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Dal Makhani">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80&fit=crop" alt="Dal makhani in a copper bowl" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--veg" aria-label="Vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--bestseller">Bestseller</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Dal Makhani</h3>
+              <p class="item-card__desc">Whole black lentils slow-simmered overnight with butter and cream — the cornerstone of Punjabi cooking.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€11.50</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Whole black lentils slow-simmered overnight with butter and cream — the cornerstone of Punjabi cooking." data-item-diet="veg" data-item-tags="Bestseller"
+                        data-item-id="mains-dal-makhani"
+                        data-item-name="Dal Makhani"
+                        data-item-price="11.50"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80&fit=crop"
+                        aria-label="Add Dal Makhani to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Palak Paneer">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?w=600&q=80&fit=crop" alt="Palak paneer garnished with cream" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--veg" aria-label="Vegetarian"></span>
+              
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Palak Paneer</h3>
+              <p class="item-card__desc">Cottage cheese cubes nestled in a velvety spinach and spice gravy — earthy, nourishing and comforting.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€12.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Cottage cheese cubes nestled in a velvety spinach and spice gravy — earthy, nourishing and comforting." data-item-diet="veg" data-item-tags=""
+                        data-item-id="mains-palak-paneer"
+                        data-item-name="Palak Paneer"
+                        data-item-price="12.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?w=600&q=80&fit=crop"
+                        aria-label="Add Palak Paneer to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Lamb Rogan Josh">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1708782340372-27ca3c98f874?w=600&q=80&fit=crop" alt="Lamb rogan josh with naan bread" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--spicy">Spicy</span><span class="item-card__tag item-card__tag--chefs">Chef's Special</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Lamb Rogan Josh</h3>
+              <p class="item-card__desc">Tender slow-braised Kashmiri lamb in a deep, aromatic gravy of whole spices and dried chillies.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€16.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Tender slow-braised Kashmiri lamb in a deep, aromatic gravy of whole spices and dried chillies." data-item-diet="nonveg" data-item-tags="Spicy,Chef's Special"
+                        data-item-id="mains-lamb-rogan-josh"
+                        data-item-name="Lamb Rogan Josh"
+                        data-item-price="16.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1708782340372-27ca3c98f874?w=600&q=80&fit=crop"
+                        aria-label="Add Lamb Rogan Josh to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Chicken Tikka Masala">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1708782344490-9026aaa5eec7?w=600&q=80&fit=crop" alt="Chicken tikka masala in a bowl" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--bestseller">Bestseller</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Chicken Tikka Masala</h3>
+              <p class="item-card__desc">Grilled tandoor chicken folded into a smooth, spiced tomato and cream masala — rich and satisfying.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€14.50</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Grilled tandoor chicken folded into a smooth, spiced tomato and cream masala — rich and satisfying." data-item-diet="nonveg" data-item-tags="Bestseller"
+                        data-item-id="mains-chicken-tikka-masala"
+                        data-item-name="Chicken Tikka Masala"
+                        data-item-price="14.50"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1708782344490-9026aaa5eec7?w=600&q=80&fit=crop"
+                        aria-label="Add Chicken Tikka Masala to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Chana Masala">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80&fit=crop" alt="Chana masala with garnish" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--veg" aria-label="Vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--spicy">Spicy</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Chana Masala</h3>
+              <p class="item-card__desc">Hearty chickpeas slow-cooked in a zesty tomato, onion and spice base — full of punchy flavour.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€11.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Hearty chickpeas slow-cooked in a zesty tomato, onion and spice base — full of punchy flavour." data-item-diet="veg" data-item-tags="Spicy"
+                        data-item-id="mains-chana-masala"
+                        data-item-name="Chana Masala"
+                        data-item-price="11.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80&fit=crop"
+                        aria-label="Add Chana Masala to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Mutton Korma">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80&fit=crop" alt="Mutton korma in a serving dish" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--chefs">Chef's Special</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Mutton Korma</h3>
+              <p class="item-card__desc">Meltingly tender mutton cooked in a luxurious sauce of cashews, yogurt and fragrant whole spices.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€17.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Meltingly tender mutton cooked in a luxurious sauce of cashews, yogurt and fragrant whole spices." data-item-diet="nonveg" data-item-tags="Chef's Special"
+                        data-item-id="mains-mutton-korma"
+                        data-item-name="Mutton Korma"
+                        data-item-price="17.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80&fit=crop"
+                        aria-label="Add Mutton Korma to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Fish Curry">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1761314036936-966ba07ae14b?w=600&q=80&fit=crop" alt="Fish curry in coconut gravy" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              <div class="item-card__tags"><span class="item-card__tag item-card__tag--spicy">Spicy</span></div>
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Fish Curry</h3>
+              <p class="item-card__desc">Fresh catch simmered in a tangy, coconut-kissed South Indian gravy with mustard seeds and curry leaf.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€15.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Fresh catch simmered in a tangy, coconut-kissed South Indian gravy with mustard seeds and curry leaf." data-item-diet="nonveg" data-item-tags="Spicy"
+                        data-item-id="mains-fish-curry"
+                        data-item-name="Fish Curry"
+                        data-item-price="15.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1761314036936-966ba07ae14b?w=600&q=80&fit=crop"
+                        aria-label="Add Fish Curry to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Egg Curry">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1715194288597-cd4df523776e?w=600&q=80&fit=crop" alt="Egg curry with whole spices" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--nonveg" aria-label="Non-vegetarian"></span>
+              
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Egg Curry</h3>
+              <p class="item-card__desc">Hard-boiled eggs in a rich, spiced onion-tomato masala — a humble, deeply satisfying classic.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€10.50</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="Hard-boiled eggs in a rich, spiced onion-tomato masala — a humble, deeply satisfying classic." data-item-diet="nonveg" data-item-tags=""
+                        data-item-id="mains-egg-curry"
+                        data-item-name="Egg Curry"
+                        data-item-price="10.50"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1715194288597-cd4df523776e?w=600&q=80&fit=crop"
+                        aria-label="Add Egg Curry to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="item-card fade-in" aria-label="Mixed Veg Curry">
+            <div class="item-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&fit=crop" alt="Mixed vegetable curry" loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+              <span class="item-card__dot item-card__dot--veg" aria-label="Vegetarian"></span>
+              
+            </div>
+            <div class="item-card__body">
+              <h3 class="item-card__name">Mixed Veg Curry</h3>
+              <p class="item-card__desc">A vibrant medley of seasonal vegetables in a gently spiced, fragrant tomato and coconut gravy.</p>
+              <div class="item-card__footer">
+                <span class="item-card__price">€10.00</span>
+                <button class="btn--add-cart"
+                        data-add-to-cart data-item-desc="A vibrant medley of seasonal vegetables in a gently spiced, fragrant tomato and coconut gravy." data-item-diet="veg" data-item-tags=""
+                        data-item-id="mains-mixed-veg-curry"
+                        data-item-name="Mixed Veg Curry"
+                        data-item-price="10.00"
+                        data-item-category="mains"
+                        data-item-image="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&fit=crop"
+                        aria-label="Add Mixed Veg Curry to cart">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider-mandala" aria-hidden="true">
+      <div class="divider-mandala__inner"></div>
+    </div>
+
+    <!-- CTA strip -->
+    <section class="section" style="background:#fff; padding-block:3rem;">
+      <div class="container" style="text-align:center;">
+        <div class="section-heading fade-in" style="margin-bottom:1.5rem;">
+          <span class="section-heading__eyebrow">Enjoying the menu?</span>
+          <h2 class="section-heading__title">Ready to Order?</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+          <p class="section-heading__sub">
+            Order takeaway for home delivery or collection, or reserve a table
+            and let us bring South India to your evening.
+          </p>
+        </div>
+        <div class="flex-center gap-4 fade-in fade-in--delay-1" style="flex-wrap:wrap;">
+          <a href="takeaway.html"    class="btn btn--gold">Order Takeaway</a>
+          <a href="reservation.html" class="btn btn--outline">Book a Table</a>
+          <a href="menu.html"        class="btn btn--outline-gold">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__logo-text">
+          <span class="footer__logo-name">Bhimas</span>
+          <span class="footer__logo-tagline">Traditional Indian Kitchen</span>
+        </div>
+        <p class="footer__about">
+          Authentic South Indian cuisine crafted with love and tradition,
+          right in the heart of Luxembourg.
+        </p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h3 class="footer__col-title">Explore</h3>
+        <a href="index.html"       class="footer__link">Home</a>
+        <a href="story.html"       class="footer__link">Our Story</a>
+        <a href="menu.html"        class="footer__link">Menu</a>
+        <a href="reservation.html" class="footer__link">Reserve a Table</a>
+        <a href="contact.html"     class="footer__link">Contact</a>
+      </nav>
+      <nav class="footer__col" aria-label="Our Menu">
+        <h3 class="footer__col-title">Our Menu</h3>
+        
+        <a href="menu-starters.html"     class="footer__link">Starters</a>
+        <a href="menu-mains.html"        class="footer__link">Mains</a>
+        <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+        <a href="menu-breads.html"       class="footer__link">Breads</a>
+        <a href="menu-thali.html"        class="footer__link">Thali Platters</a>
+        <a href="menu-desserts.html"     class="footer__link">Desserts</a>
+        <a href="menu-drinks.html"       class="footer__link">Drinks</a>
+      </nav>
+      <div class="footer__col" aria-label="Visit Us">
+        <h3 class="footer__col-title">Visit Us</h3>
+        <p class="footer__address">
+          123 Rue de la Gare<br />
+          Luxembourg City<br />
+          L-1616, Luxembourg
+        </p>
+        <a href="tel:+35212345678"            class="footer__link">+352 12 34 56 78</a>
+        <a href="mailto:hello@bhimas.lu" class="footer__link">hello@bhimas.lu</a>
+        <p class="footer__hours">Mon–Fri: 12:00 – 22:00<br />Sat–Sun: 11:00 – 23:00</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copy">
+          &copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen.
+          All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating cart bar -->
+    <!-- FLOATING CART BAR -->
+  <a href="takeaway.html" class="cart-bar" id="cart-bar" role="status" aria-live="polite">
+    <div class="cart-bar__inner">
+      <div class="cart-bar__left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-bar__count" aria-label="Items in cart">0</span>
+        <span class="cart-bar__label">items in your order</span>
+      </div>
+      <div class="cart-bar__total">&euro;0.00</div>
+      <div class="cart-bar__btn" role="button">View Order</div>
+    </div>
+  </a>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+
+  <!-- Sticky CTA banner (shown after ~40% scroll) -->
+  <div class="menu-cta-banner" id="menu-cta-banner" role="complementary" aria-label="Next steps">
+    <span class="menu-cta-banner__text">Loved what you saw? Take the next step.</span>
+    <div class="menu-cta-banner__actions">
+      <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+      <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      <a href="takeaway.html" class="btn btn--outline-cream btn--sm">Pre-Order Takeaway</a>
+    </div>
+  </div>
+  <script>
+  (function() {
+    var banner = document.getElementById("menu-cta-banner");
+    if (!banner) return;
+    var shown = false;
+    window.addEventListener("scroll", function() {
+      if (!shown && window.scrollY > document.body.scrollHeight * 0.4) {
+        banner.classList.add("visible");
+        shown = true;
+      }
+    }, { passive: true });
+  })();
+  </script>
+  <script src="js/main.js"></script>
+  <!-- ── Floating Cart Button ──────────────────────────────── -->
+  <a href="takeaway.html" class="cart-fab" id="cart-fab" aria-label="View cart">
+    <span class="cart-fab__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </span>
+    <span class="cart-fab__badge" id="cart-fab-count">0</span>
+  </a>
+</body>
+</html>

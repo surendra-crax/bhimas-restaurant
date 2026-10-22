@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>My Account | Bhimas Traditional Indian Kitchen — Luxembourg</title>
+  <meta name="description" content="View your order history, upcoming table bookings, and quickly re-order your favorite South Indian dishes from your Bhimas Kitchen account." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- ─── Favicon ─── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+
+  <meta name="csrf-token" content="" />
+
+  <!-- ─── Design system ─── -->
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+
+  <!-- ─── Page-specific styles ─── -->
+  <style>
+    .account-section {
+      background-color: var(--cream);
+      min-height: calc(100vh - 200px);
+      padding-block: var(--space-12);
+    }
+
+    .account-container {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: var(--space-4);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    /* Sidebar Profile Card */
+    .profile-card {
+      background: var(--maroon-dark);
+      border: 1px solid var(--gold-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      color: var(--cream);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Subtle pattern for profile card */
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='%23FFDE59' fill-opacity='0.02'/%3E%3C/svg%3E");
+      background-size: 40px;
+      border-radius: var(--radius-lg);
+      pointer-events: none;
+    }
+
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      background: var(--gold);
+      color: var(--maroon-dark);
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto var(--space-4);
+      font-weight: bold;
+      border: 3px solid rgba(255, 246, 210, 0.2);
+    }
+
+    .profile-name {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .profile-email {
+      font-size: var(--text-xs);
+      opacity: 0.7;
+      margin-bottom: var(--space-4);
+    }
+
+    .profile-info-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 246, 210, 0.1);
+      padding-block: var(--space-3);
+      font-size: var(--text-xs);
+    }
+
+    .profile-info-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .profile-info-value {
+      opacity: 0.9;
+    }
+
+    .profile-logout-btn {
+      width: 100%;
+      margin-top: var(--space-4);
+    }
+
+    /* Content Area */
+    .dashboard-tabs {
+      display: flex;
+      gap: var(--space-2);
+      border-bottom: 2px solid rgba(74, 14, 18, 0.1);
+      margin-bottom: var(--space-6);
+    }
+
+    .dashboard-tab {
+      background: none;
+      border: none;
+      padding: var(--space-3) var(--space-5);
+      font-family: var(--font-accent);
+      font-size: var(--text-xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--maroon-dark);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color var(--transition-base), border-color var(--transition-base);
+    }
+
+    .dashboard-tab:hover {
+      color: var(--gold-dark);
+    }
+
+    .dashboard-tab.active {
+      color: var(--maroon);
+      border-bottom-color: var(--maroon);
+      font-weight: bold;
+    }
+
+    .history-panel {
+      display: none;
+    }
+
+    .history-panel.active {
+      display: block;
+    }
+
+    /* History Cards */
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .history-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .history-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .card-ref {
+      font-family: var(--font-accent);
+      font-size: var(--text-sm);
+      color: var(--maroon-dark);
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .card-date {
+      font-size: var(--text-xs);
+      color: var(--color-text-light);
+    }
+
+    .card-status {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-weight: bold;
+    }
+
+    .status--pending {
+      background: #fff8e1;
+      color: #b78103;
+      border: 1px solid #ffe082;
+    }
+
+    .status--ready {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .status--completed {
+      background: #e3f2fd;
+      color: #1565c0;
+      border: 1px solid #90caf9;
+    }
+
+    .status--confirmed {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .status--declined {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ef9a9a;
+    }
+
+    .card-summary {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    .card-items-list {
+      font-size: var(--text-xs);
+      color: var(--color-text-light);
+      margin-top: var(--space-1);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .card-price {
+      font-family: var(--font-heading);
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--maroon);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-12) var(--space-4);
+      background: var(--color-bg);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .empty-state__icon {
+      font-size: 3rem;
+      color: var(--gold-dark);
+      margin-bottom: var(--space-3);
+    }
+
+    .empty-state__title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-2);
+      color: var(--maroon-dark);
+    }
+
+    .empty-state__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-light);
+      margin-bottom: var(--space-6);
+    }
+
+    @media (max-width: 768px) {
+      .account-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+      .history-card {
+        grid-template-columns: 1fr;
+      }
+      .card-actions {
+        justify-content: space-between;
+        border-top: 1px solid var(--color-border);
+        padding-top: var(--space-3);
+        margin-top: var(--space-2);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ─────────────────────────────────────────────────────────
+       NAVBAR
+  ──────────────────────────────────────────────────────────── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas" class="navbar__logo-img" width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+        <a href="login.html"       class="navbar__link active" id="navbar-account-link">My Account</a>
+      </nav>
+
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="navbar__mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <a href="login.html"       class="navbar__mobile-link active" id="mobile-navbar-account-link">My Account</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+      <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        View Cart
+        <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════════════════════════ -->
+  <main id="main-content" tabindex="-1">
+    
+    <!-- Cinematic Page Hero Section -->
+    <section class="page-hero" aria-labelledby="account-hero-title">
+      <div class="page-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb__link">Home</a>
+          <span class="breadcrumb__separator">/</span>
+          <span class="breadcrumb__current">My Account</span>
+        </nav>
+        <h1 class="page-hero__title" id="account-hero-title">My <em>Dashboard</em></h1>
+        <div class="page-hero__ornament">— ● —</div>
+      </div>
+    </section>
+
+    <!-- Dashboard Main Section -->
+    <section class="account-section">
+      <div class="account-container">
+        
+        <!-- SIDEBAR -->
+        <aside class="profile-card">
+          <div class="profile-avatar" id="avatar-initials">B</div>
+          <h2 class="profile-name" id="profile-name">Loading...</h2>
+          <p class="profile-email" id="profile-email">email@example.com</p>
+
+          <div class="profile-info-row">
+            <span class="profile-info-label">Phone</span>
+            <span class="profile-info-value" id="profile-phone">—</span>
+          </div>
+
+          <a href="php/customer-logout.php" class="btn btn--outline-cream btn--sm profile-logout-btn">Sign Out</a>
+        </aside>
+
+        <!-- MAIN HISTORY CONTENT -->
+        <div class="dashboard-content">
+          <div class="dashboard-tabs">
+            <button class="dashboard-tab active" id="tab-orders" onclick="switchDashboardTab('orders')">Takeaway Orders</button>
+            <button class="dashboard-tab" id="tab-bookings" onclick="switchDashboardTab('bookings')">Bookings</button>
+          </div>
+
+          <!-- A. ORDERS PANEL -->
+          <div class="history-panel active" id="panel-orders">
+            <div class="history-list" id="orders-list">
+              <!-- Dynamically populated -->
+              <p style="text-align: center; color: var(--maroon-dark);">Loading your takeaway history...</p>
+            </div>
+          </div>
+
+          <!-- B. BOOKINGS PANEL -->
+          <div class="history-panel" id="panel-bookings">
+            <div class="history-list" id="bookings-list">
+              <!-- Dynamically populated -->
+              <p style="text-align: center; color: var(--maroon-dark);">Loading your booking history...</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────────────────────────────────────────────
+       FOOTER
+  ──────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p class="footer__copy">&copy; <span class="footer-year">2026</span> Bhimas Traditional Indian Kitchen. All Rights Reserved.</p>
+        <p class="footer__credits">Crafted with passion in Luxembourg.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab Controller
+    function switchDashboardTab(tab) {
+      document.querySelectorAll('.dashboard-tab').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.history-panel').forEach(p => p.classList.remove('active'));
+
+      if (tab === 'orders') {
+        document.getElementById('tab-orders').classList.add('active');
+        document.getElementById('panel-orders').classList.add('active');
+      } else if (tab === 'bookings') {
+        document.getElementById('tab-bookings').classList.add('active');
+        document.getElementById('panel-bookings').classList.add('active');
+      }
+    }
+
+    // ── 1. Fetch Session Info & Authenticate ──────────────────────
+    let currentUser = null;
+
+    fetch('php/customer-session.php', { credentials: 'same-origin' })
+      .then(res => res.json())
+      .then(d => {
+        if (!d.logged_in || !d.user) {
+          // Redirect to login page if guest
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        currentUser = d.user;
+        
+        // Populate profile sidebar
+        document.getElementById('profile-name').textContent = currentUser.name;
+        document.getElementById('profile-email').textContent = currentUser.email;
+        document.getElementById('profile-phone').textContent = currentUser.phone || 'Not provided';
+        
+        // Init initials avatar
+        const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        document.getElementById('avatar-initials').textContent = initials || 'B';
+
+        // Load History Data
+        loadHistory();
+      })
+      .catch(err => {
+        console.error('Session fetch error:', err);
+        window.location.href = 'login.html';
+      });
+
+    // ── 2. Fetch Order and Booking History ────────────────────────
+    function loadHistory() {
+      fetch('php/customer-history.php', { credentials: 'same-origin' })
+        .then(res => {
+          if (!res.ok) throw new Error('Could not fetch history');
+          return res.json();
+        })
+        .then(data => {
+          renderOrders(data.orders);
+          renderBookings(data.bookings);
+        })
+        .catch(err => {
+          const errMsg = `<div class="empty-state">
+            <div class="empty-state__icon">⚠️</div>
+            <div class="empty-state__title">Failed to load history</div>
+            <p class="empty-state__desc">We encountered an issue loading your history details. Please try reloading.</p>
+          </div>`;
+          document.getElementById('orders-list').innerHTML = errMsg;
+          document.getElementById('bookings-list').innerHTML = errMsg;
+        });
+    }
+
+    // ── 3. Render Takeaway Orders ─────────────────────────────────
+    function renderOrders(orders) {
+      const container = document.getElementById('orders-list');
+      if (!orders || orders.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__icon">🥘</div>
+            <div class="empty-state__title">No Takeaway Orders Yet</div>
+            <p class="empty-state__desc">You haven't ordered online with us yet. Check out our takeaway menu!</p>
+            <a href="takeaway.html" class="btn btn--gold btn--sm">Order Takeaway Now</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      orders.forEach(order => {
+        // Build items text snippet
+        const itemsText = order.items.map(item => `${item.qty}x ${item.name}`).join(', ');
+        
+        // Build items detailed markup for modal/display
+        const itemsDetails = order.items.map(item => `
+          <div style="display:flex; justify-content:space-between; margin-bottom: 2px;">
+            <span>${item.qty}x ${item.name}</span>
+            <span>€${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        `).join('');
+
+        const card = document.createElement('div');
+        card.className = 'history-card';
+        
+        // JSON encode items safely for the reorder button dataset
+        const itemsJsonStr = JSON.stringify(order.items);
+
+        card.innerHTML = `
+          <div class="card-main">
+            <div class="card-header">
+              <span class="card-ref">${order.order_ref}</span>
+              <span class="card-date">${order.date_str}</span>
+              <span class="card-status status--${order.status}">${order.status}</span>
+            </div>
+            <div class="card-summary">
+              <strong>Pickup:</strong> ${order.pickup_time}
+            </div>
+            <div class="card-items-list">
+              ${itemsText}
+            </div>
+            ${order.notes ? `<div style="font-size: var(--text-xs); color: var(--gold-dark); font-style:italic; margin-top:4px;">Notes: ${order.notes}</div>` : ''}
+          </div>
+          <div class="card-actions">
+            <span class="card-price">€${order.total_amount.toFixed(2)}</span>
+            <button class="btn btn--gold btn--sm" onclick='handleReorder(${itemsJsonStr})'>Re-order</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ── 4. Render Table Bookings ─────────────────────────────────
+    function renderBookings(bookings) {
+      const container = document.getElementById('bookings-list');
+      if (!bookings || bookings.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__icon">🍷</div>
+            <div class="empty-state__title">No Reservations Yet</div>
+            <p class="empty-state__desc">Book your table now and experience fine dining at Bhimas Kitchen.</p>
+            <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+            <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      bookings.forEach(bk => {
+        const card = document.createElement('div');
+        card.className = 'history-card';
+
+        card.innerHTML = `
+          <div class="card-main">
+            <div class="card-header">
+              <span class="card-ref">${bk.booking_ref}</span>
+              <span class="card-date">${bk.created_str}</span>
+              <span class="card-status status--${bk.status}">${bk.status}</span>
+            </div>
+            <div class="card-summary">
+              <strong>Guests:</strong> ${bk.guests} | <strong>Date:</strong> ${bk.date_str} | <strong>Time:</strong> ${bk.time}
+            </div>
+            ${bk.special_requests ? `<div style="font-size: var(--text-xs); color: var(--color-text-light); font-style:italic; margin-top:4px;">Requests: ${bk.special_requests}</div>` : ''}
+          </div>
+          <div class="card-actions">
+            <!-- No pricing for bookings -->
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ── 5. Re-ordering Action Handler ──────────────────────────────
+    function handleReorder(items) {
+      if (!items || !Array.isArray(items)) return;
+      
+      // Clear current cart
+      BhimasCart.clear();
+      
+      // Load all items into cart
+      items.forEach(item => {
+        BhimasCart.addItem({
+          id:       item.id,
+          name:     item.name,
+          price:    parseFloat(item.price),
+          qty:      parseInt(item.qty, 10) || 1,
+          image:    item.image || '',
+          category: item.category || ''
+        });
+      });
+      
+      BhimasToast.success('Cart repopulated with past order items! Redirecting to takeaway page...', { duration: 1500 });
+      
+      setTimeout(() => {
+        window.location.href = 'takeaway.html';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

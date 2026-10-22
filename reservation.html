@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve a Table | Bhimas Traditional Indian Kitchen</title>
+  <meta name="description" content="Book a table at Bhimas Traditional Indian Kitchen in Luxembourg. Reserve online for lunch or dinner — Mon–Thu 11:00–22:00, Fri–Sat 11:00–23:00, Sun 12:00–21:00." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/reservation.html" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Reserve a Table | Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="Book your table online for authentic South Indian dining in Luxembourg." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta property="og:url"         content="https://bhimas.lu/reservation.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <meta name="csrf-token" content="" />
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reservation page extras ── */
+
+    /* Closed / loading banner */
+    .avail-banner {
+      display: none;
+      background: var(--cream);
+      border: 1px solid rgba(128,28,35,0.2);
+      border-left: 4px solid var(--maroon);
+      border-radius: 4px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .avail-banner.visible { display: block; }
+    .avail-banner__title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--dark-maroon);
+      margin: 0 0 0.4rem;
+    }
+    .avail-banner__body {
+      font-family:Poppins, sans-serif;
+      font-size: 1rem;
+      color: #5a4040;
+      margin: 0;
+    }
+    .avail-banner__phone {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-family:Poppins, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--maroon);
+      text-decoration: none;
+    }
+    .avail-banner__phone:hover { color: var(--dark-maroon); }
+
+    /* Main layout */
+    .res-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: start;
+      padding: 3rem 0 5rem;
+    }
+
+    /* Form card */
+    .res-form-card {
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 16px rgba(62,26,0,0.08);
+      padding: 2.25rem 2.5rem;
+      position: relative; /* required for form-double-border ::before */
+    }
+    .res-form-card__title {
+      font-family:Poppins, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark-maroon);
+      margin: 0 0 0.25rem;
+    }
+    .res-form-card__sub {
+      font-family:Poppins, sans-serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #7a5a5a;
+      margin: 0 0 1.75rem;
+    }
+
+    /* Form grid */
+    .form-row { display: grid; gap: 1rem; }
+    .form-row--2 { grid-template-columns: 1fr 1fr; }
+    .form-row--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group + .form-group { margin-top: 0; }
+    .form-label {
+      font-family:Poppins, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-maroon);
+      font-weight: 600;
+    }
+    .form-label .req { color: var(--maroon); margin-left: 2px; }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family:Poppins, sans-serif;
+      font-size: 1rem;
+      color: #3a2a2a;
+      background: #fff;
+      border: 1px solid rgba(128,28,35,0.25);
+      border-radius: 3px;
+      padding: 0.6rem 0.85rem;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--maroon);
+      box-shadow: 0 0 0 3px rgba(128,28,35,0.1);
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23801C23' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.85rem center;
+      padding-right: 2.2rem;
+      cursor: pointer;
+    }
+    .form-textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
+    .form-error {
+      font-family:Poppins, sans-serif;
+      font-size: 0.82rem;
+      color: var(--color-error, #c0392b);
+      display: none;
+    }
+    .form-message {
+      border-radius: 3px;
+      padding: 0.85rem 1rem;
+      font-family:Poppins, sans-serif;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    .form-message.show { display: block; }
+    .form-message--success {
+      background: rgba(37,108,35,0.1);
+      border: 1px solid rgba(37,108,35,0.35);
+      color: #1a5218;
+    }
+    .form-message--error {
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: #9b2d20;
+    }
+    .form-spacer { margin-top: 1.25rem; }
+
+    /* Confirmation card (shown on success) */
+    .booking-confirm {
+      display: none;
+      background: rgba(37,108,35,0.06);
+      border: 1px solid rgba(37,108,35,0.25);
+      border-left: 4px solid #256C23;
+      border-radius: 4px;
+      padding: 2rem 2.25rem;
+    }
+    .booking-confirm.visible { display: block; }
+    .booking-confirm__icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .booking-confirm__title {
+      font-family:Poppins, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a5218;
+      margin: 0 0 0.4rem;
+    }
+    .booking-confirm__ref {
+      font-family:Poppins, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--dark-maroon);
+      margin: 0 0 1rem;
+    }
+    .booking-confirm__detail {
+      font-family:Poppins, sans-serif;
+      font-size: 0.95rem;
+      color: #3a2a2a;
+      margin: 0.2rem 0;
+    }
+    .booking-confirm__note {
+      font-family:Poppins, sans-serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #5a4040;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(37,108,35,0.2);
+      padding-top: 0.75rem;
+    }
+
+    /* Sidebar */
+    .res-sidebar {}
+    .hours-card {
+      background: var(--cream);
+      border: 1px solid rgba(128,28,35,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .hours-card__header {
+      background: var(--maroon);
+      padding: 0.85rem 1.25rem;
+    }
+    .hours-card__header-title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin: 0;
+    }
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family:Poppins, sans-serif;
+      font-size: 0.92rem;
+    }
+    .hours-table td {
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid rgba(128,28,35,0.08);
+      vertical-align: middle;
+    }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .hours-table .day { color: #5a3a3a; font-weight: 500; }
+    .hours-table .time { text-align: right; color: var(--dark-maroon); font-weight: 600; }
+    .hours-table tr.today td { background: rgba(128,28,35,0.05); }
+
+    /* Info card */
+    .info-card {
+      background: #fff;
+      border: 1px solid rgba(128,28,35,0.1);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+    }
+    .info-card__title {
+      font-family:Poppins, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+    }
+    .info-card__item {
+      display: flex;
+      gap: 0.65rem;
+      font-family:Poppins, sans-serif;
+      font-size: 0.9rem;
+      color: #5a4040;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .info-card__item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 14px;
+      height: 14px;
+      stroke: var(--maroon);
+      fill: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .res-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .res-sidebar { order: -1; }
+    }
+    @media (max-width: 600px) {
+      .res-form-card { padding: 1.5rem 1.25rem; }
+      .form-row--2,
+      .form-row--3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ── Navbar ── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas logo" class="navbar__logo-img"
+             width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link active">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+      <button class="navbar__hamburger" id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Mobile Menu ── -->
+  <nav class="navbar__mobile-menu" id="mobile-menu"
+       role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+        <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      View Cart
+      <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+    </a>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero" aria-labelledby="res-hero-title">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Book Your Table</span>
+      <h1 class="page-hero__title" id="res-hero-title">Reserve a Table</h1>
+      <div class="page-hero__ornament" aria-hidden="true">
+        <span class="page-hero__ornament-dot"></span>
+      </div>
+      <p class="page-hero__sub">Join us for an authentic South Indian dining experience — we'll have your table ready and waiting.</p>
+    </div>
+  </section>
+
+  <!-- ── Main ── -->
+  <main id="main-content" tabindex="-1">
+    <section class="form-page-bg" style="background:var(--cream); padding-bottom:1rem;">
+      <div class="container">
+
+        <!-- Availability banner (shown when closed / bookings off) -->
+        <div class="avail-banner" id="avail-banner" role="alert" aria-live="polite">
+          <p class="avail-banner__title" id="avail-banner-title">We're currently closed</p>
+          <p class="avail-banner__body" id="avail-banner-body">
+            Online reservations are available during opening hours. Please call us to book outside those times.
+          </p>
+          <a href="tel:+35212345678" class="avail-banner__phone">+352 12 34 56 78</a>
+        </div>
+
+        <div class="res-layout">
+
+          <!-- ── Left: Form ── -->
+          <div>
+            <!-- Form wrapper (hidden when closed) -->
+            <div id="form-wrapper">
+              <div class="res-form-card form-double-border fade-in">
+                <h2 class="res-form-card__title">Make a Reservation</h2>
+                <p class="res-form-card__sub">All fields marked <span style="color:var(--maroon)">*</span> are required.</p>
+
+                <form id="booking-form" novalidate autocomplete="on">
+                  <input type="hidden" name="csrf_token" id="csrf-token-input" />
+
+                  <div class="form-row form-row--2">
+                    <div class="form-group">
+                      <label class="form-label" for="res-name">Full Name <span class="req">*</span></label>
+                      <input class="form-input" type="text" id="res-name" name="name"
+                             placeholder="Your full name"
+                             autocomplete="name" required />
+                      <span class="form-error" id="err-name"></span>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="res-phone">Phone <span class="req">*</span></label>
+                      <input class="form-input" type="tel" id="res-phone" name="phone"
+                             placeholder="+352 …"
+                             autocomplete="tel" required />
+                      <span class="form-error" id="err-phone"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-row form-spacer">
+                    <div class="form-group">
+                      <label class="form-label" for="res-email">Email Address <span class="req">*</span></label>
+                      <input class="form-input" type="email" id="res-email" name="email"
+                             placeholder="you@example.com"
+                             autocomplete="email" required />
+                      <span class="form-error" id="err-email"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-row form-row--3 form-spacer">
+                    <div class="form-group">
+                      <label class="form-label" for="res-date">Date <span class="req">*</span></label>
+                      <input class="form-input" type="date" id="res-date" name="date" required />
+                      <span class="form-error" id="err-date"></span>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="res-time">Time <span class="req">*</span></label>
+                      <select class="form-select" id="res-time" name="time" required>
+                        <option value="">Select a time</option>
+                      </select>
+                      <span class="form-error" id="err-time"></span>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="res-guests">Guests <span class="req">*</span></label>
+                      <select class="form-select" id="res-guests" name="guests" required>
+                        <option value="">How many?</option>
+                        <option value="1">1 guest</option>
+                        <option value="2">2 guests</option>
+                        <option value="3">3 guests</option>
+                        <option value="4">4 guests</option>
+                        <option value="5">5 guests</option>
+                        <option value="6">6 guests</option>
+                        <option value="7">7 guests</option>
+                        <option value="8">8 guests</option>
+                        <option value="9">9 guests</option>
+                        <option value="10">10 guests</option>
+                        <option value="11+">11+ guests (call us)</option>
+                      </select>
+                      <span class="form-error" id="err-guests"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-row form-spacer">
+                    <div class="form-group">
+                      <label class="form-label" for="res-requests">Special Requests</label>
+                      <textarea class="form-textarea" id="res-requests" name="special_requests"
+                                placeholder="Dietary requirements, celebrations, accessibility needs…"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-message" id="booking-message" role="alert"></div>
+
+                  <div class="form-spacer">
+                    <button type="submit" class="btn btn--primary btn--full" id="booking-submit">
+                      <span class="btn__text">Request Reservation</span>
+                    </button>
+                  </div>
+                </form>
+              </div><!-- /.res-form-card -->
+
+              <!-- Confirmation card (replaces form on success) -->
+              <div class="booking-confirm" id="booking-confirm" role="status" aria-live="polite">
+                <span class="booking-confirm__icon" aria-hidden="true">✓</span>
+                <h2 class="booking-confirm__title">Reservation Requested!</h2>
+                <p class="booking-confirm__ref" id="confirm-ref">Reference: —</p>
+                <p class="booking-confirm__detail" id="confirm-name"></p>
+                <p class="booking-confirm__detail" id="confirm-date"></p>
+                <p class="booking-confirm__detail" id="confirm-guests"></p>
+                <p class="booking-confirm__note">
+                  We'll send a confirmation to your email shortly. If you don't hear from us within 2 hours, please call us on
+                  <a href="tel:+35212345678" style="color:var(--maroon); font-weight:600;">+352 12 34 56 78</a>.
+                </p>
+              </div>
+            </div><!-- /#form-wrapper -->
+          </div>
+
+          <!-- ── Right: Sidebar ── -->
+          <aside class="res-sidebar fade-in fade-in--delay-2" aria-label="Opening hours and info">
+
+            <!-- Opening hours -->
+            <div class="hours-card">
+              <div class="hours-card__header">
+                <h3 class="hours-card__header-title">Opening Hours</h3>
+              </div>
+              <table class="hours-table" aria-label="Opening hours">
+                <tbody>
+                  <tr class="hours-row" data-days="1,2,3,4">
+                    <td class="day">Mon – Thu</td>
+                    <td class="time">11:00 – 22:00</td>
+                  </tr>
+                  <tr class="hours-row" data-days="5,6">
+                    <td class="day">Fri – Sat</td>
+                    <td class="time">11:00 – 23:00</td>
+                  </tr>
+                  <tr class="hours-row" data-days="0">
+                    <td class="day">Sunday</td>
+                    <td class="time">12:00 – 21:00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Info card -->
+            <div class="info-card">
+              <h3 class="info-card__title">Good to Know</h3>
+              <p class="info-card__item">
+                <svg viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Reservations accepted for up to 10 guests. For larger parties, please call us directly.
+              </p>
+              <p class="info-card__item">
+                <svg viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Last reservation accepted 60 minutes before closing.
+              </p>
+              <p class="info-card__item">
+                <svg viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.18 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Prefer to call? <a href="tel:+35212345678" style="color:var(--maroon); font-weight:600;">+352 12 34 56 78</a>
+              </p>
+              <p class="info-card__item">
+                <svg viewBox="0 0 24 24" aria-hidden="true" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                123 Rue de la Gare, Luxembourg City, L-1616
+              </p>
+            </div>
+
+            <!-- Browse menu CTA -->
+            <div class="info-card" style="text-align:center; padding:1.5rem;">
+              <p style="font-family:Poppins, sans-serif; font-size:1rem; font-style:italic; color:#5a4040; margin:0 0 1rem;">Not sure what you'd like? Browse our menu first.</p>
+              <a href="menu.html" class="btn btn--outline-maroon btn--sm" style="width:100%; justify-content:center;">Browse Our Menu</a>
+            </div>
+
+          </aside>
+
+        </div><!-- /.res-layout -->
+      </div><!-- /.container -->
+    </section>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__logo-text">
+          <span class="footer__logo-name">Bhimas</span>
+          <span class="footer__logo-tagline">Traditional Indian Kitchen</span>
+        </div>
+        <p class="footer__about">Authentic South Indian cuisine crafted with love and tradition, right in the heart of Luxembourg.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h3 class="footer__col-title">Explore</h3>
+        <a href="index.html"       class="footer__link">Home</a>
+        <a href="story.html"       class="footer__link">Our Story</a>
+        <a href="menu.html"        class="footer__link">Menu</a>
+        <a href="reservation.html" class="footer__link">Reserve a Table</a>
+        <a href="contact.html"     class="footer__link">Contact</a>
+      </nav>
+      <nav class="footer__col" aria-label="Our Menu">
+        <h3 class="footer__col-title">Our Menu</h3>
+        <a href="menu-starters.html"     class="footer__link">Starters</a>
+        <a href="menu-mains.html"        class="footer__link">Mains</a>
+        <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+        <a href="menu-breads.html"       class="footer__link">Breads</a>
+        <a href="menu-thali.html"        class="footer__link">Thali Platters</a>
+        <a href="menu-desserts.html"     class="footer__link">Desserts</a>
+        <a href="menu-drinks.html"       class="footer__link">Drinks</a>
+      </nav>
+      <div class="footer__col" aria-label="Visit Us">
+        <h3 class="footer__col-title">Visit Us</h3>
+        <p class="footer__address">123 Rue de la Gare<br />Luxembourg City<br />L-1616, Luxembourg</p>
+        <a href="tel:+35212345678"             class="footer__link">+352 12 34 56 78</a>
+        <a href="mailto:hello@bhimas.lu" class="footer__link">hello@bhimas.lu</a>
+        <p class="footer__hours">Mon–Thu: 11:00 – 22:00<br />Fri–Sat: 11:00 – 23:00<br />Sun: 12:00 – 21:00</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copy">&copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Floating cart bar ── -->
+    <!-- FLOATING CART BAR -->
+  <a href="takeaway.html" class="cart-bar" id="cart-bar" role="status" aria-live="polite">
+    <div class="cart-bar__inner">
+      <div class="cart-bar__left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-bar__count" aria-label="Items in cart">0</span>
+        <span class="cart-bar__label">items in your order</span>
+      </div>
+      <div class="cart-bar__total">&euro;0.00</div>
+      <div class="cart-bar__btn" role="button">View Order</div>
+    </div>
+  </a>
+
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Utility ─────────────────────────────────────────── */
+
+    // Set today's date as minimum for date picker
+    var today = new Date();
+    var yyyy  = today.getFullYear();
+    var mm    = String(today.getMonth() + 1).padStart(2, '0');
+    var dd    = String(today.getDate()).padStart(2, '0');
+    var todayStr = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('res-date').setAttribute('min', todayStr);
+    document.getElementById('res-date').value = todayStr;
+
+    // Highlight today in opening hours table
+    var todayDow = today.getDay(); // 0=Sun
+    document.querySelectorAll('.hours-row').forEach(function (row) {
+      var days = (row.dataset.days || '').split(',').map(Number);
+      if (days.indexOf(todayDow) !== -1) row.classList.add('today');
+    });
+
+    /* ── CSRF ─────────────────────────────────────────────── */
+    var csrfInput = document.getElementById('csrf-token-input');
+    if (csrfInput) csrfInput.value = getCsrfToken();
+
+    /* ── Availability check ───────────────────────────────── */
+    var banner      = document.getElementById('avail-banner');
+    var formWrapper = document.getElementById('form-wrapper');
+    var timeSelect  = document.getElementById('res-time');
+
+    function showClosed(title, body) {
+      document.getElementById('avail-banner-title').textContent = title;
+      document.getElementById('avail-banner-body').textContent  = body;
+      banner.classList.add('visible');
+      formWrapper.style.display = 'none';
+    }
+
+    function getDayHours(s) {
+      // Returns {open, close} strings for today
+      var dow = new Date().getDay();
+      if (dow === 0)             return { open: '12:00', close: '21:00' };
+      if (dow === 5 || dow === 6) return { open: '11:00', close: '23:00' };
+      return { open: '11:00', close: '22:00' };
+    }
+
+    function isWithinHours(open, close) {
+      var now   = new Date();
+      var h     = now.getHours(), m = now.getMinutes();
+      var nowM  = h * 60 + m;
+      var parts = open.split(':').map(Number);
+      var openM = parts[0] * 60 + parts[1];
+      parts     = close.split(':').map(Number);
+      var closeM = parts[0] * 60 + parts[1];
+      return nowM >= openM && nowM < closeM;
+    }
+
+    fetchSettings().then(function (s) {
+      // Reservation disabled?
+      if (s.reservation_enabled === '0' || s.reservation_enabled === 0) {
+        showClosed(
+          'Online Reservations Unavailable',
+          'We are not currently accepting online reservations. Please call us to book a table.'
+        );
+        return;
+      }
+
+      // Determine today's hours (prefer settings, fall back to hardcoded)
+      var dow = new Date().getDay();
+      var open, close;
+      if (dow === 0) {
+        open  = s.open_time_weekend  || '12:00';
+        close = s.close_time_weekend || '21:00';
+      } else if (dow === 5 || dow === 6) {
+        open  = s.open_time_weekend  || '11:00';
+        close = s.close_time_weekend || '23:00';
+      } else {
+        open  = s.open_time  || '11:00';
+        close = s.close_time || '22:00';
+      }
+
+      // Populate time slots
+      var lastMin = parseInt(s.last_reservation_mins_before_close || '60', 10);
+      var slots = generateTimeSlots({
+        openTime:    open,
+        closeTime:   close,
+        intervalMin: parseInt(s.slot_interval_mins || '30', 10),
+        lastSlotMin: lastMin
+      });
+      populateTimeSelect(timeSelect, slots, 'Select a time');
+
+      // No slots means too late today — allow future date selection but warn
+      if (slots.length === 0) {
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        var ty = tomorrow.getFullYear();
+        var tm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        var td = String(tomorrow.getDate()).padStart(2, '0');
+        document.getElementById('res-date').value = ty + '-' + tm + '-' + td;
+        // Re-populate tomorrow's slots using same hours
+        var tmrSlots = generateTimeSlots({
+          openTime: open, closeTime: close,
+          intervalMin: parseInt(s.slot_interval_mins || '30', 10),
+          lastSlotMin: lastMin
+        });
+        populateTimeSelect(timeSelect, tmrSlots, 'Select a time');
+      }
+
+      // Re-generate slots when date changes (future dates get full-day slots)
+      document.getElementById('res-date').addEventListener('change', function () {
+        var selected = new Date(this.value + 'T00:00:00');
+        var selDow   = selected.getDay();
+        var selOpen, selClose;
+        if (selDow === 0) {
+          selOpen = s.open_time_weekend || '12:00'; selClose = s.close_time_weekend || '21:00';
+        } else if (selDow === 5 || selDow === 6) {
+          selOpen = s.open_time_weekend || '11:00'; selClose = s.close_time_weekend || '23:00';
+        } else {
+          selOpen = s.open_time || '11:00'; selClose = s.close_time || '22:00';
+        }
+        var sl = generateTimeSlots({
+          openTime: selOpen, closeTime: selClose,
+          intervalMin: parseInt(s.slot_interval_mins || '30', 10),
+          lastSlotMin: parseInt(s.last_reservation_mins_before_close || '60', 10)
+        });
+        populateTimeSelect(timeSelect, sl, 'Select a time');
+      });
+    });
+
+    /* ── Form submission ──────────────────────────────────── */
+    var form   = document.getElementById('booking-form');
+    var submit = document.getElementById('booking-submit');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Client-side validation
+      var valid = true;
+      var fields = [
+        { id: 'res-name',   errId: 'err-name',   check: function(v) { return v.trim().length < 2 ? 'Please enter your full name.' : null; } },
+        { id: 'res-phone',  errId: 'err-phone',  check: function(v) { return v.trim().length < 6 ? 'Please enter a valid phone number.' : null; } },
+        { id: 'res-email',  errId: 'err-email',  check: function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? null : 'Please enter a valid email address.'; } },
+        { id: 'res-date',   errId: 'err-date',   check: function(v) { return v ? null : 'Please choose a date.'; } },
+        { id: 'res-time',   errId: 'err-time',   check: function(v) { return v ? null : 'Please select a time.'; } },
+        { id: 'res-guests', errId: 'err-guests', check: function(v) { return v ? null : 'Please select number of guests.'; } },
+      ];
+
+      fields.forEach(function (f) {
+        var input = document.getElementById(f.id);
+        var errEl = document.getElementById(f.errId);
+        var err   = f.check(input.value);
+        if (err) {
+          input.style.borderColor = 'var(--color-error, #c0392b)';
+          errEl.textContent = err;
+          errEl.style.display = 'block';
+          valid = false;
+        } else {
+          input.style.borderColor = '';
+          errEl.textContent = '';
+          errEl.style.display = 'none';
+        }
+      });
+
+      if (!valid) return;
+
+      // Update CSRF before send
+      csrfInput.value = getCsrfToken();
+
+      BhimasForms.setLoading(submit, 'Sending request…');
+
+      var data = BhimasForms.serialize(form);
+
+      fetch('php/submit-booking.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        credentials: 'same-origin',
+        body: JSON.stringify(data)
+      }))
+      .then(function (res) {
+        var status = res.status;
+        return res.text().then(function (text) {
+          var json;
+          try {
+            json = JSON.parse(text);
+          } catch (e) {
+            console.error('[Bhimas booking] PHP returned non-JSON (HTTP ' + status + '):\n', text.substring(0, 3000));
+            throw new Error(
+              status === 0
+                ? 'Could not reach the server. Make sure MAMP is running and you\'re using http://localhost:8888/bhimas/'
+                : 'Server error (HTTP ' + status + '). Open the browser console (F12 → Console) to see the PHP response.'
+            );
+          }
+          return json;
+        });
+      })
+      .then(function (json) {
+        BhimasForms.resetLoading(submit);
+        if (json && json.success) {
+          // Hide form, show confirmation
+          form.style.display = 'none';
+          var confirm = document.getElementById('booking-confirm');
+          confirm.classList.add('visible');
+          document.getElementById('confirm-ref').textContent    = 'Reference: ' + (json.ref || '—');
+          document.getElementById('confirm-name').textContent   = '👤 ' + data.name;
+          document.getElementById('confirm-date').textContent   = '📅 ' + data.date + ' at ' + data.time;
+          document.getElementById('confirm-guests').textContent = '👥 ' + data.guests + ' guest(s)';
+          BhimasToast.success('Reservation request sent!');
+        } else {
+          BhimasForms.showError(form, json.message || 'Something went wrong. Please try again or call us.');
+        }
+      })
+      .catch(function (err) {
+        BhimasForms.resetLoading(submit);
+        BhimasForms.showError(form, err.message || 'Network error. Please check your connection and try again.');
+      });
+    });
+
+  })();
+  </script>
+  <!-- ── Floating Cart Button ──────────────────────────────── -->
+  <a href="takeaway.html" class="cart-fab" id="cart-fab" aria-label="View cart">
+    <span class="cart-fab__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </span>
+    <span class="cart-fab__badge" id="cart-fab-count">0</span>
+  </a>
+</body>
+</html>

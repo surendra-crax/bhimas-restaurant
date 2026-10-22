@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>Sign In | Bhimas Traditional Indian Kitchen — Luxembourg</title>
+  <meta name="description" content="Access your Bhimas Kitchen account to manage your profile, view reservation history, and quickly re-order your favorite traditional South Indian dishes." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- ─── Favicon ─── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+
+  <meta name="csrf-token" content="" />
+
+  <!-- ─── Design system ─── -->
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+
+  <!-- ─── Page-specific styles ─── -->
+  <style>
+    .auth-section {
+      background-color: var(--maroon-dark);
+      min-height: calc(100vh - 200px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-12) var(--space-4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle mandala pattern on dark bg */
+    .auth-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='36' stroke='%23FFDE59' stroke-opacity='0.04'/%3E%3Ccircle cx='40' cy='40' r='26' stroke='%23FFDE59' stroke-opacity='0.03'/%3E%3Cpath d='M40 4 L41 39 L76 40 L41 41 L40 76 L39 41 L4 40 L39 39Z' fill='%23FFDE59' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100px;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(45, 8, 11, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8) var(--space-6);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 246, 210, 0.1);
+      margin-bottom: var(--space-6);
+    }
+
+    .auth-tab {
+      flex: 1;
+      background: none;
+      border: none;
+      color: rgba(255, 246, 210, 0.5);
+      font-family: var(--font-accent);
+      font-size: var(--text-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding-block: var(--space-3);
+      cursor: pointer;
+      transition: color var(--transition-base), border-color var(--transition-base);
+      border-bottom: 2px solid transparent;
+      text-align: center;
+    }
+
+    .auth-tab:hover {
+      color: var(--cream);
+    }
+
+    .auth-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .auth-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: var(--space-2);
+    }
+
+    .auth-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: rgba(255, 246, 210, 0.6);
+      text-align: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .auth-form-group {
+      margin-bottom: var(--space-4);
+      position: relative;
+    }
+
+    .auth-form-label {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .auth-form-input {
+      width: 100%;
+      background: rgba(255, 246, 210, 0.05);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: var(--radius-sm);
+      padding: var(--space-3) var(--space-4);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      transition: border-color var(--transition-base), background var(--transition-base);
+    }
+
+    .auth-form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(255, 246, 210, 0.1);
+    }
+
+    .auth-actions {
+      margin-top: var(--space-6);
+    }
+
+    .auth-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-4);
+      font-size: var(--text-xs);
+    }
+
+    .auth-link {
+      color: rgba(255, 246, 210, 0.6);
+      text-decoration: none;
+      transition: color var(--transition-base);
+    }
+
+    .auth-link:hover {
+      color: var(--gold);
+    }
+
+    .auth-panel {
+      display: none;
+    }
+
+    .auth-panel.active {
+      display: block;
+    }
+
+    .form-message {
+      padding: var(--space-3);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-4);
+      display: none;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    .form-message--success {
+      background: rgba(76, 175, 80, 0.15);
+      border: 1px solid rgba(76, 175, 80, 0.4);
+      color: #81c784;
+    }
+
+    .form-message--error {
+      background: rgba(244, 67, 54, 0.15);
+      border: 1px solid rgba(244, 67, 54, 0.4);
+      color: #e57373;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ─────────────────────────────────────────────────────────
+       NAVBAR
+  ──────────────────────────────────────────────────────────── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas" class="navbar__logo-img" width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="navbar__mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+      <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        View Cart
+        <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════════════════════════ -->
+  <main id="main-content" tabindex="-1">
+    <section class="auth-section">
+      <div class="auth-card">
+        
+        <!-- Toggle Tabs -->
+        <div class="auth-tabs" id="auth-tabs-container">
+          <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+          <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <div class="section-heading__ornament" style="margin-bottom: var(--space-4);">— ● —</div>
+
+        <!-- 1. LOGIN PANEL -->
+        <div class="auth-panel active" id="panel-login">
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">Log in to view your orders & reservations</p>
+          
+          <form id="form-login" onsubmit="handleLogin(event)">
+            <div class="form-message" id="login-msg"></div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="login-email">Email Address</label>
+              <input type="email" id="login-email" class="auth-form-input" required />
+            </div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="login-password">Password</label>
+              <input type="password" id="login-password" class="auth-form-input" required />
+            </div>
+
+            <div class="auth-actions">
+              <button type="submit" class="btn btn--gold btn--full" id="btn-login">Sign In</button>
+            </div>
+
+            <div class="auth-links">
+              <a href="#" class="auth-link" onclick="switchView('forgot')">Forgot Password?</a>
+              <a href="#" class="auth-link" onclick="switchTab('register')">Create an Account</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. REGISTER PANEL -->
+        <div class="auth-panel" id="panel-register">
+          <h1 class="auth-title">Create Account</h1>
+          <p class="auth-subtitle">Register to track your history and fast checkout</p>
+          
+          <form id="form-register" onsubmit="handleRegister(event)">
+            <div class="form-message" id="register-msg"></div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" class="auth-form-input" required minlength="2" />
+            </div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" class="auth-form-input" required />
+            </div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="reg-phone">Phone Number (Optional)</label>
+              <input type="tel" id="reg-phone" class="auth-form-input" />
+            </div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="reg-password">Password</label>
+              <input type="password" id="reg-password" class="auth-form-input" required minlength="6" />
+            </div>
+
+            <div class="auth-actions">
+              <button type="submit" class="btn btn--gold btn--full" id="btn-register">Register</button>
+            </div>
+
+            <div class="auth-links">
+              <span></span>
+              <a href="#" class="auth-link" onclick="switchTab('login')">Already have an account?</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- 3. FORGOT PASSWORD PANEL -->
+        <div class="auth-panel" id="panel-forgot">
+          <h1 class="auth-title">Recover Password</h1>
+          <p class="auth-subtitle">Enter your email and we'll send a reset link</p>
+          
+          <form id="form-forgot" onsubmit="handleForgot(event)">
+            <div class="form-message" id="forgot-msg"></div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="forgot-email">Email Address</label>
+              <input type="email" id="forgot-email" class="auth-form-input" required />
+            </div>
+
+            <div class="auth-actions">
+              <button type="submit" class="btn btn--gold btn--full" id="btn-forgot">Send Reset Link</button>
+            </div>
+
+            <div class="auth-links">
+              <a href="#" class="auth-link" onclick="switchView('login')">&larr; Back to Sign In</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- 4. RESET PASSWORD PANEL -->
+        <div class="auth-panel" id="panel-reset">
+          <h1 class="auth-title">New Password</h1>
+          <p class="auth-subtitle">Set a secure password for your account</p>
+          
+          <form id="form-reset" onsubmit="handleReset(event)">
+            <div class="form-message" id="reset-msg"></div>
+
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="reset-password-input">New Password</label>
+              <input type="password" id="reset-password-input" class="auth-form-input" required minlength="6" />
+            </div>
+
+            <div class="auth-actions">
+              <button type="submit" class="btn btn--gold btn--full" id="btn-reset">Update Password</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ─────────────────────────────────────────────────────────
+       FOOTER
+  ──────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p class="footer__copy">&copy; <span class="footer-year">2026</span> Bhimas Traditional Indian Kitchen. All Rights Reserved.</p>
+        <p class="footer__credits">Crafted with passion in Luxembourg.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab and view controllers
+    function switchTab(tab) {
+      document.querySelectorAll('.auth-tab').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+      
+      document.getElementById('auth-tabs-container').style.display = 'flex';
+      
+      if (tab === 'login') {
+        document.getElementById('tab-login').classList.add('active');
+        document.getElementById('panel-login').classList.add('active');
+      } else if (tab === 'register') {
+        document.getElementById('tab-register').classList.add('active');
+        document.getElementById('panel-register').classList.add('active');
+      }
+    }
+
+    function switchView(view) {
+      document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+      
+      if (view === 'forgot') {
+        document.getElementById('auth-tabs-container').style.display = 'none';
+        document.getElementById('panel-forgot').classList.add('active');
+      } else if (view === 'login') {
+        switchTab('login');
+      }
+    }
+
+    // Capture token from URL if exists
+    const urlParams = new URLSearchParams(window.location.search);
+    const resetToken = urlParams.get('token');
+    
+    if (resetToken) {
+      document.getElementById('auth-tabs-container').style.display = 'none';
+      document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-reset').classList.add('active');
+    }
+
+    // ── Forms AJAX Handlers ─────────────────────────────────────
+    
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const btn = document.getElementById('btn-login');
+      const msg = document.getElementById('login-msg');
+
+      BhimasForms.setLoading(btn, 'Signing In...');
+      msg.className = 'form-message';
+      msg.style.display = 'none';
+
+      fetch('php/customer-login.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      }))
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(d => { throw new Error(d.message || 'Incorrect credentials.'); });
+        }
+        return res.json();
+      })
+      .then(d => {
+        BhimasToast.success(d.message);
+        setTimeout(() => {
+          // Check if checkout redirect is pending, or go to account.html
+          const redirect = urlParams.get('redirect');
+          window.location.href = redirect ? decodeURIComponent(redirect) : 'account.html';
+        }, 1000);
+      })
+      .catch(err => {
+        BhimasForms.resetLoading(btn);
+        msg.textContent = err.message;
+        msg.className = 'form-message form-message--error show';
+      });
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const phone = document.getElementById('reg-phone').value;
+      const password = document.getElementById('reg-password').value;
+      const btn = document.getElementById('btn-register');
+      const msg = document.getElementById('register-msg');
+
+      BhimasForms.setLoading(btn, 'Creating Account...');
+      msg.className = 'form-message';
+      msg.style.display = 'none';
+
+      fetch('php/customer-register.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, password })
+      }))
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(d => { throw new Error(d.message || 'Registration failed.'); });
+        }
+        return res.json();
+      })
+      .then(d => {
+        BhimasToast.success(d.message);
+        setTimeout(() => {
+          window.location.href = 'account.html';
+        }, 1200);
+      })
+      .catch(err => {
+        BhimasForms.resetLoading(btn);
+        msg.textContent = err.message;
+        msg.className = 'form-message form-message--error show';
+      });
+    }
+
+    function handleForgot(e) {
+      e.preventDefault();
+      const email = document.getElementById('forgot-email').value;
+      const btn = document.getElementById('btn-forgot');
+      const msg = document.getElementById('forgot-msg');
+
+      BhimasForms.setLoading(btn, 'Sending Link...');
+      msg.className = 'form-message';
+      msg.style.display = 'none';
+
+      fetch('php/forgot-password.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      }))
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(d => { throw new Error(d.message || 'Could not send reset email.'); });
+        }
+        return res.json();
+      })
+      .then(d => {
+        msg.textContent = d.message;
+        msg.className = 'form-message form-message--success show';
+        BhimasForms.resetLoading(btn);
+      })
+      .catch(err => {
+        BhimasForms.resetLoading(btn);
+        msg.textContent = err.message;
+        msg.className = 'form-message form-message--error show';
+      });
+    }
+
+    function handleReset(e) {
+      e.preventDefault();
+      const password = document.getElementById('reset-password-input').value;
+      const btn = document.getElementById('btn-reset');
+      const msg = document.getElementById('reset-msg');
+
+      BhimasForms.setLoading(btn, 'Updating Password...');
+      msg.className = 'form-message';
+      msg.style.display = 'none';
+
+      fetch('php/reset-password.php', withCsrf({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: resetToken, password })
+      }))
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(d => { throw new Error(d.message || 'Reset token invalid or expired.'); });
+        }
+        return res.json();
+      })
+      .then(d => {
+        BhimasToast.success(d.message);
+        msg.textContent = d.message + ' Redirecting to login...';
+        msg.className = 'form-message form-message--success show';
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 2000);
+      })
+      .catch(err => {
+        BhimasForms.resetLoading(btn);
+        msg.textContent = err.message;
+        msg.className = 'form-message form-message--error show';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>Our Story | Bhimas Traditional Indian Kitchen — Luxembourg</title>
+  <meta name="description" content="Discover the story behind Bhimas Traditional Indian Kitchen — a family's passion for authentic South Indian cooking, brought to the heart of Luxembourg." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/story.html" />
+
+  <!-- ─── Open Graph ─── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Our Story | Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="A family's passion for authentic South Indian cooking, brought to the heart of Luxembourg since 2012." />
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" />
+  <meta property="og:url"         content="https://bhimas.lu/story.html" />
+
+  <!-- ─── Favicon ─── -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon"    sizes="180x180" href="images/apple-touch-icon.png" />
+
+  <meta name="csrf-token" content="" />
+
+  <!-- ─── Design system ─── -->
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+
+  <!-- ─── Page-specific styles ─── -->
+  <style>
+
+    /* ════════════════════════════════════════════════════════
+       STORY PAGE — Component Styles
+    ════════════════════════════════════════════════════════ */
+
+    /* ── 1. Hero ── */
+    /* Handled by global .page-hero styles in style.css */
+
+    /* ── 2. Brand Story ── */
+    .brand-story-section {
+      background-color: var(--cream);
+      padding-top: 0;
+    }
+
+    /* Pull quote — Clean elegant text quote */
+    .pull-quote {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .pull-quote__text {
+      font-family:Poppins, sans-serif;
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-style: italic;
+      font-weight: 300;
+      color: #801C23; /* Maroon */
+      line-height: 1.45;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* Story body copy grid */
+    .story-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      padding-top: var(--space-8);
+    }
+
+    .story-body__col p {
+      font-size: var(--text-md);
+      color: var(--color-text);
+      line-height: 1.9;
+      margin-bottom: var(--space-5);
+    }
+
+    .story-body__col p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-body__col p strong {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--maroon-dark);
+      font-size: 1.05em;
+    }
+
+    /* ── 3. Founder / Chef Section ── */
+    .founder-section {
+      background-color: var(--cream-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle maroon corner accent */
+    .founder-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--maroon), transparent);
+      opacity: 0.4;
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+
+    .founder-img-wrap {
+      position: relative;
+    }
+
+    /* Double-border frame effect */
+    .founder-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px -12px 12px 12px;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .founder-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      background: var(--gold);
+      opacity: 0.12;
+      border-radius: var(--radius-md);
+      pointer-events: none;
+    }
+
+    .founder-img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius-lg);
+      display: block;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .founder-img-caption {
+      position: absolute;
+      bottom: var(--space-4);
+      left: var(--space-4);
+      right: var(--space-4);
+      z-index: 2;
+      background: rgba(74,14,18,0.88);
+      backdrop-filter: blur(6px);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      border-left: 3px solid var(--gold);
+    }
+
+    .founder-img-caption__name {
+      font-family: var(--font-accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .founder-img-caption__role {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: rgba(255,246,210,0.70);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .founder-bio__eyebrow {
+      font-family: var(--font-accent);
+      font-size: var(--text-xs);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+
+    .founder-bio__name {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      color: var(--maroon-dark);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: var(--space-2);
+    }
+
+    .founder-bio__title {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--color-text-muted);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-6);
+    }
+
+    .founder-bio__divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-bottom: var(--space-6);
+    }
+
+    .founder-bio__text {
+      font-size: var(--text-md);
+      color: var(--color-text);
+      line-height: 1.9;
+      margin-bottom: var(--space-5);
+    }
+
+    .founder-bio__text:last-of-type {
+      margin-bottom: var(--space-6);
+    }
+
+    .founder-bio__text strong {
+      font-family: var(--font-heading);
+      color: var(--maroon-dark);
+      font-size: 1.05em;
+    }
+
+    /* Signature image (optional — renders as styled italic text if image missing) */
+    .founder-bio__signature {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-style: italic;
+      color: var(--maroon);
+      opacity: 0.75;
+      margin-top: var(--space-4);
+    }
+
+    /* ── 4. Values Section ── */
+    .values-section {
+      background-color: var(--maroon-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle mandala pattern on dark bg */
+    .values-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='36' stroke='%23FFDE59' stroke-opacity='0.04'/%3E%3Ccircle cx='40' cy='40' r='26' stroke='%23FFDE59' stroke-opacity='0.03'/%3E%3Cpath d='M40 4 L41 39 L76 40 L41 41 L40 76 L39 41 L4 40 L39 39Z' fill='%23FFDE59' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100px;
+      pointer-events: none;
+    }
+
+    .values-section .section-heading__eyebrow { color: var(--gold); opacity: 0.8; }
+    .values-section .section-heading__title   { color: var(--cream); }
+    .values-section .section-heading__sub     { color: rgba(255,246,210,0.65); }
+    .values-section .section-heading__ornament::before,
+    .values-section .section-heading__ornament::after {
+      background: linear-gradient(to right, transparent, rgba(255,222,89,0.4), transparent);
+    }
+
+    .value-card {
+      position: relative;
+      text-align: center;
+      padding: var(--space-8) var(--space-6);
+      border: 1px solid rgba(255,222,89,0.12);
+      border-radius: var(--radius-lg);
+      background: rgba(255,246,210,0.03);
+      transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+    }
+
+    .value-card:hover {
+      background: rgba(255,246,210,0.07);
+      border-color: rgba(255,222,89,0.28);
+      transform: translateY(-4px);
+    }
+
+    /* Top gold accent bar */
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      opacity: 0.6;
+      transition: width var(--transition-base), opacity var(--transition-base);
+    }
+
+    .value-card:hover::before {
+      width: 70px;
+      opacity: 1;
+    }
+
+    .value-card__icon-wrap {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto var(--space-5);
+      border: 1.5px solid rgba(255,222,89,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition-base), background var(--transition-base);
+    }
+
+    .value-card:hover .value-card__icon-wrap {
+      border-color: rgba(255,222,89,0.55);
+      background: rgba(255,222,89,0.06);
+    }
+
+    .value-card__icon {
+      width: 30px;
+      height: 30px;
+      color: var(--gold);
+    }
+
+    .value-card__title {
+      font-family: var(--font-accent);
+      font-size: var(--text-sm);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-3);
+    }
+
+    .value-card__text {
+      font-size: var(--text-base);
+      color: rgba(255,246,210,0.70);
+      line-height: 1.80;
+    }
+
+    /* ── 5. CTA Strip ── */
+    .story-cta {
+      background: var(--cream);
+      padding-block: var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Faint gold line top */
+    .story-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--color-border), transparent);
+    }
+
+    .story-cta__eyebrow {
+      font-family: var(--font-accent);
+      font-size: var(--text-xs);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: var(--space-4);
+    }
+
+    .story-cta__title {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      color: var(--maroon-dark);
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      line-height: 1.15;
+    }
+
+    .story-cta__title em {
+      color: var(--maroon);
+      font-style: normal;
+    }
+
+    .story-cta__sub {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      color: var(--color-text-light);
+      font-style: italic;
+      max-width: 580px;
+      margin-inline: auto;
+      margin-bottom: var(--space-8);
+      line-height: 1.7;
+    }
+
+    .story-cta__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .story-hero__title  { font-size: var(--text-3xl); }
+      .pull-quote__text   { font-size: var(--text-xl); }
+      .pull-quote::before,
+      .pull-quote::after  { font-size: 5rem; opacity: 0.15; }
+
+      .story-body         { grid-template-columns: 1fr; gap: var(--space-4); }
+
+      .founder-grid       { grid-template-columns: 1fr; }
+      .founder-img        { aspect-ratio: 4 / 3; }
+      .founder-img-wrap::before { display: none; }
+
+      .story-cta__title   { font-size: var(--text-3xl); }
+    }
+
+    @media (max-width: 480px) {
+      .story-hero         { padding-block: var(--space-16); }
+      .story-hero__title  { font-size: var(--text-2xl); }
+      .pull-quote         { padding: var(--space-8) var(--space-4); }
+      .pull-quote__text   { font-size: var(--text-lg); }
+      .pull-quote::before,
+      .pull-quote::after  { display: none; }
+      .story-cta__title   { font-size: var(--text-2xl); }
+      .story-cta__actions { flex-direction: column; }
+      .story-cta__actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+
+<body class="story-page">
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ─────────────────────────────────────────────────────────
+       NAVBAR
+  ──────────────────────────────────────────────────────────── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <img src="images/logo.png" alt="Bhimas" class="navbar__logo-img" width="44" height="44" onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link active">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+
+      <div class="navbar__cta">
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="navbar__mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link active">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+        <a href="takeaway.html" class="navbar__mobile-cart" id="mobile-cart-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      View Cart
+      <span class="navbar__mobile-cart-count" id="mobile-cart-count">0</span>
+    </a>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════════════════════════ -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- ─────────────────────────────────────────────────────────
+         1. PAGE HERO — Dark maroon, mandala watermark
+    ──────────────────────────────────────────────────────────── -->
+    <section class="page-hero" aria-labelledby="story-hero-title">
+
+      <div class="page-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb__item">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span class="breadcrumb__item breadcrumb__item--active">Our Story</span>
+        </nav>
+
+        <span class="page-hero__eyebrow fade-in">Est. 2012 · Luxembourg</span>
+
+        <h1 class="page-hero__title fade-in fade-in--delay-1" id="story-hero-title">
+          Our <em>Story</em>
+        </h1>
+
+        <div class="page-hero__ornament fade-in fade-in--delay-2" aria-hidden="true">
+          <span class="page-hero__ornament-dot"></span>
+        </div>
+
+        <p class="page-hero__sub fade-in fade-in--delay-3">
+          A family's devotion to the flavours of South India — and a dream to share them with the world.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────
+         2. BRAND STORY — Pull quote + body copy
+    ──────────────────────────────────────────────────────────── -->
+    <section class="section brand-story-section" aria-labelledby="brand-story-heading">
+
+      <!-- Pull quote — Clean elegant text quote -->
+      <div class="pull-quote fade-in">
+        <p class="pull-quote__text">
+          &ldquo;Food is never just sustenance in our family &mdash; it is memory,
+          love, and the thread that binds every generation together.&rdquo;
+        </p>
+      </div>
+
+      <div class="container">
+
+        <div class="divider-mandala" aria-hidden="true">
+          <div class="divider-mandala__inner"></div>
+        </div>
+
+        <!-- Story body — two column prose -->
+        <div class="story-body">
+
+          <div class="story-body__col fade-in fade-in--delay-1">
+            <p>
+              Bhimas Traditional Indian Kitchen was born from a simple but powerful
+              conviction: that <strong>authentic South Indian cooking deserved a home
+              in Luxembourg.</strong> When Rajesh Bhima arrived in Luxembourg City in 2009,
+              he found a vibrant international community — but precious few places where
+              he could find the flavours of his childhood in Kerala.
+            </p>
+            <p>
+              Rajesh had grown up watching his mother and grandmother cook over wood fires
+              in their ancestral home in Thrissur. The slow reduction of tamarind into a
+              dark, complex rasam. The hiss of mustard seeds hitting hot coconut oil. The
+              patient grinding of fresh coconut with green chillies for a chutney no jar
+              could ever replicate. These were not just recipes — they were rituals.
+            </p>
+            <p>
+              After three years of cooking for friends and neighbours in his apartment —
+              winning over Luxembourgers, Indians, Portuguese, and Belgians alike — Rajesh
+              made the leap. In November 2012, <strong>Bhimas Traditional Indian Kitchen
+              opened its doors</strong> at 14 Rue de la Gare, with twelve tables, a clay
+              tandoor oven, and an unwavering commitment to cooking food his grandmother
+              would recognise.
+            </p>
+          </div>
+
+          <div class="story-body__col fade-in fade-in--delay-2">
+            <p>
+              In those early days, Rajesh cooked everything himself, sourcing fresh
+              vegetables from the weekly market in Bonnevoie and importing whole spices —
+              long pepper, Malabar cardamom, true cinnamon — directly from Kerala. The
+              menu was small and focused: a handful of starters, three curries, one
+              biryani, and a dessert of gulab jamun. Every evening, the twelve tables
+              were full.
+            </p>
+            <p>
+              Word spread through Luxembourg's growing Indian community, then outward
+              into the city at large. Local food writers took notice. Corporate clients
+              began booking the whole restaurant for team celebrations. <strong>Bhimas
+              became something rare</strong> — a neighbourhood restaurant that felt
+              equally at home hosting a young couple's first date and a minister's
+              retirement dinner.
+            </p>
+            <p>
+              Today, Bhimas has grown its menu to over 80 dishes, its team to fifteen
+              passionate cooks and front-of-house staff, and its dining room now seats
+              sixty guests. But the cooking philosophy has never changed: every spice is
+              still ground in-house, every sauce is still made from scratch, and every
+              dish still carries the soul of a family kitchen in Kerala.
+            </p>
+          </div>
+
+        </div><!-- /.story-body -->
+
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────
+         3. FOUNDER SECTION — 2-col: image left, bio right
+    ──────────────────────────────────────────────────────────── -->
+    <section class="section founder-section" aria-labelledby="founder-heading">
+      <div class="container">
+        <div class="founder-grid">
+
+          <!-- Left: chef image -->
+          <div class="founder-img-wrap fade-in">
+            <img
+              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80&fit=crop&crop=top"
+              alt="Chef Rajesh Bhima in the kitchen at Bhimas Traditional Indian Kitchen"
+              class="founder-img"
+              width="700"
+              loading="lazy" onerror="this.onerror=null;this.style.background='#2C1008';this.style.minHeight='200px';this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22600%22 height%3D%22400%22%3E%3Crect width%3D%22600%22 height%3D%22400%22 fill%3D%22%232C1008%22%2F%3E%3Ctext x%3D%22300%22 y%3D%22200%22 font-family%3D%22Poppins%2Csans-serif%22 font-size%3D%2220%22 fill%3D%22%23C9A84C%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3EBhima%27s Kitchen%3C%2Ftext%3E%3C%2Fsvg%3E'"/>
+            <div class="founder-img-caption">
+              <div class="founder-img-caption__name">Rajesh Bhima</div>
+              <div class="founder-img-caption__role">Founder &amp; Head Chef, Bhimas Kitchen</div>
+            </div>
+          </div>
+
+          <!-- Right: bio -->
+          <div class="founder-bio fade-in fade-in--delay-2">
+            <span class="founder-bio__eyebrow">Meet the Founder</span>
+            <h2 class="founder-bio__name" id="founder-heading">Rajesh Bhima</h2>
+            <p class="founder-bio__title">Chef, Restaurateur &amp; Keeper of Family Recipes</p>
+            <div class="founder-bio__divider" aria-hidden="true"></div>
+
+            <p class="founder-bio__text">
+              Rajesh grew up in Thrissur, Kerala, in a household where the kitchen was
+              the heart of daily life. His mother, Lakshmi, cooked every meal from
+              ingredients grown in their courtyard garden — curry leaf trees, drumstick
+              pods, raw mangoes. His grandmother, Kamala, was the keeper of the family's
+              masala blends, <strong>recipes she guarded with affectionate secrecy.</strong>
+            </p>
+
+            <p class="founder-bio__text">
+              Rajesh trained formally at the Institute of Hotel Management in Trivandrum,
+              then spent eight years in professional kitchens across India, the UAE, and
+              the UK before settling in Luxembourg with his family in 2009. The decision
+              to open Bhimas came not from a business plan but from a conversation at a
+              dinner party: a Luxembourgish friend told him that his cooking was
+              <strong>"the most alive food I have ever tasted."</strong>
+            </p>
+
+            <p class="founder-bio__text">
+              That sentence changed everything. Rajesh spent two years perfecting his
+              menu, negotiating suppliers, and converting a former brasserie on Rue de
+              la Gare into a warm, intimate dining room. He insisted on cooking with a
+              clay tandoor — even when his contractor told him it was impossible to
+              install in a Luxembourg listed building. He found a way.
+            </p>
+
+            <p class="founder-bio__text">
+              Today Rajesh oversees the kitchen with his son Arjun, who trained in
+              Paris and brings a refined eye to presentation while fiercely guarding the
+              authenticity of every recipe. Together, they are writing the next chapter
+              of a story that began in a Kerala kitchen three generations ago.
+            </p>
+
+            <p class="founder-bio__signature" aria-label="Rajesh Bhima's signature">
+              — Rajesh Bhima
+            </p>
+          </div>
+
+        </div><!-- /.founder-grid -->
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────
+         4. OUR VALUES — 3 columns on dark maroon
+    ──────────────────────────────────────────────────────────── -->
+    <section class="section values-section" aria-labelledby="values-heading">
+      <div class="container">
+
+        <div class="section-heading fade-in">
+          <span class="section-heading__eyebrow">What We Stand For</span>
+          <h2 class="section-heading__title" id="values-heading">Our Values</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+          <p class="section-heading__sub">
+            Three principles guide every decision we make — from choosing
+            our suppliers to training our team.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <!-- Value 1: Heritage -->
+          <div class="value-card fade-in fade-in--delay-1">
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <!-- Temple / heritage icon -->
+              <svg class="value-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/>
+                <path d="M3 10h18"/>
+                <path d="M5 6l7-3 7 3"/>
+                <path d="M4 10v11"/>
+                <path d="M20 10v11"/>
+                <path d="M8 14v3"/>
+                <path d="M12 14v3"/>
+                <path d="M16 14v3"/>
+              </svg>
+            </div>
+            <h3 class="value-card__title">Heritage</h3>
+            <p class="value-card__text">
+              Every recipe on our menu has a history. We follow centuries-old
+              techniques — from dum slow-cooking to stone-ground masalas — because
+              the traditional method is always the best method. We do not modernise
+              for the sake of it; we preserve because these flavours are irreplaceable.
+            </p>
+          </div>
+
+          <!-- Value 2: Freshness -->
+          <div class="value-card fade-in fade-in--delay-2">
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <!-- Leaf / freshness icon -->
+              <svg class="value-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+            </div>
+            <h3 class="value-card__title">Freshness</h3>
+            <p class="value-card__text">
+              We shop daily, prepare daily, and serve daily. Nothing at Bhimas
+              sits in a freezer waiting. Vegetables come from local Luxembourg
+              growers and the market on Rue du Fort Neipperg. Our whole spices
+              arrive from Kerala quarterly and are ground each morning — never
+              more than we need for that day's service.
+            </p>
+          </div>
+
+          <!-- Value 3: Community -->
+          <div class="value-card fade-in fade-in--delay-3">
+            <div class="value-card__icon-wrap" aria-hidden="true">
+              <!-- People / community icon -->
+              <svg class="value-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="value-card__title">Community</h3>
+            <p class="value-card__text">
+              Bhimas has always been more than a restaurant — it is a gathering
+              place for Luxembourg's diverse community. We host cultural evenings,
+              Diwali celebrations, and cooking workshops open to all. A portion of
+              our annual revenue supports the Luxembourg-India Friendship Society's
+              education fund for children from low-income families.
+            </p>
+          </div>
+
+        </div><!-- /.grid-3 -->
+
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────
+         5. TIMELINE — A brief history
+    ──────────────────────────────────────────────────────────── -->
+    <section class="section" style="background-color: var(--cream-dark);" aria-labelledby="timeline-heading">
+      <div class="container">
+
+        <div class="section-heading fade-in">
+          <span class="section-heading__eyebrow">A Brief History</span>
+          <h2 class="section-heading__title" id="timeline-heading">Milestones</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+        </div>
+
+        <!-- Vertical timeline -->
+        <div style="
+          max-width: 680px;
+          margin-inline: auto;
+          position: relative;
+          padding-left: var(--space-10);
+        ">
+          <!-- Vertical line -->
+          <div style="
+            position: absolute;
+            left: 16px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold), var(--color-border-light), transparent);
+          " aria-hidden="true"></div>
+
+          <!-- Event 1 -->
+          <div class="fade-in" style="position:relative; margin-bottom: var(--space-10);">
+            <div style="
+              position: absolute;
+              left: calc(-1 * var(--space-10) + 8px);
+              top: 4px;
+              width: 16px; height: 16px;
+              background: var(--gold);
+              border-radius: 50%;
+              border: 3px solid var(--cream-dark);
+              box-shadow: 0 0 0 2px var(--color-border);
+            " aria-hidden="true"></div>
+            <span style="font-family:var(--font-accent);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">2009</span>
+            <h3 style="font-family:var(--font-heading);font-size:var(--text-xl);color:var(--maroon-dark);margin:var(--space-1) 0 var(--space-2);">Rajesh Arrives in Luxembourg</h3>
+            <p style="font-size:var(--text-base);color:var(--color-text-light);line-height:1.75;">
+              Rajesh Bhima relocates to Luxembourg with his family, joining the European Commission
+              as a culinary consultant. He begins cooking South Indian suppers for friends, quickly
+              developing a loyal following.
+            </p>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="fade-in fade-in--delay-1" style="position:relative; margin-bottom: var(--space-10);">
+            <div style="
+              position: absolute;
+              left: calc(-1 * var(--space-10) + 8px);
+              top: 4px;
+              width: 16px; height: 16px;
+              background: var(--gold);
+              border-radius: 50%;
+              border: 3px solid var(--cream-dark);
+              box-shadow: 0 0 0 2px var(--color-border);
+            " aria-hidden="true"></div>
+            <span style="font-family:var(--font-accent);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">November 2012</span>
+            <h3 style="font-family:var(--font-heading);font-size:var(--text-xl);color:var(--maroon-dark);margin:var(--space-1) 0 var(--space-2);">Bhimas Opens Its Doors</h3>
+            <p style="font-size:var(--text-base);color:var(--color-text-light);line-height:1.75;">
+              The restaurant opens at 14 Rue de la Gare with twelve tables and a menu of twenty
+              dishes. Every table is booked on opening night. The <em>Wort</em> newspaper calls it
+              "Luxembourg's most exciting new restaurant of the year."
+            </p>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="fade-in fade-in--delay-2" style="position:relative; margin-bottom: var(--space-10);">
+            <div style="
+              position: absolute;
+              left: calc(-1 * var(--space-10) + 8px);
+              top: 4px;
+              width: 16px; height: 16px;
+              background: var(--gold);
+              border-radius: 50%;
+              border: 3px solid var(--cream-dark);
+              box-shadow: 0 0 0 2px var(--color-border);
+            " aria-hidden="true"></div>
+            <span style="font-family:var(--font-accent);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">2016</span>
+            <h3 style="font-family:var(--font-heading);font-size:var(--text-xl);color:var(--maroon-dark);margin:var(--space-1) 0 var(--space-2);">Expansion &amp; Tandoor Installation</h3>
+            <p style="font-size:var(--text-base);color:var(--color-text-light);line-height:1.75;">
+              Bhimas acquires the neighbouring space, doubling capacity to sixty covers. A
+              second clay tandoor oven is installed — a feat of engineering that required
+              reinforcing the floor and specially lining the flue. The tandoor breads
+              programme launches, becoming an instant signature.
+            </p>
+          </div>
+
+          <!-- Event 4 -->
+          <div class="fade-in fade-in--delay-3" style="position:relative; margin-bottom: var(--space-10);">
+            <div style="
+              position: absolute;
+              left: calc(-1 * var(--space-10) + 8px);
+              top: 4px;
+              width: 16px; height: 16px;
+              background: var(--gold);
+              border-radius: 50%;
+              border: 3px solid var(--cream-dark);
+              box-shadow: 0 0 0 2px var(--color-border);
+            " aria-hidden="true"></div>
+            <span style="font-family:var(--font-accent);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">2020</span>
+            <h3 style="font-family:var(--font-heading);font-size:var(--text-xl);color:var(--maroon-dark);margin:var(--space-1) 0 var(--space-2);">Arjun Joins the Kitchen</h3>
+            <p style="font-size:var(--text-base);color:var(--color-text-light);line-height:1.75;">
+              Rajesh's son Arjun, after training at Le Cordon Bleu Paris and a stage at a
+              Michelin-starred restaurant in Lyon, returns to Luxembourg. He takes on the role
+              of Sous Chef, refining presentation while ensuring every dish remains true to
+              its Kerala roots.
+            </p>
+          </div>
+
+          <!-- Event 5 -->
+          <div class="fade-in fade-in--delay-4" style="position:relative;">
+            <div style="
+              position: absolute;
+              left: calc(-1 * var(--space-10) + 8px);
+              top: 4px;
+              width: 16px; height: 16px;
+              background: var(--maroon);
+              border-radius: 50%;
+              border: 3px solid var(--cream-dark);
+              box-shadow: 0 0 0 2px var(--color-border);
+            " aria-hidden="true"></div>
+            <span style="font-family:var(--font-accent);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">Today</span>
+            <h3 style="font-family:var(--font-heading);font-size:var(--text-xl);color:var(--maroon-dark);margin:var(--space-1) 0 var(--space-2);">Still Cooking with the Same Soul</h3>
+            <p style="font-size:var(--text-base);color:var(--color-text-light);line-height:1.75;">
+              More than 80 dishes, 15 staff, and thousands of satisfied guests later —
+              Bhimas remains exactly what it was always meant to be: a place where the
+              cooking is honest, the welcome is warm, and every meal feels like coming home.
+            </p>
+          </div>
+
+        </div><!-- /timeline -->
+
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────
+         6. CTA — Come experience it yourself
+    ──────────────────────────────────────────────────────────── -->
+    <section class="story-cta" aria-labelledby="story-cta-title">
+      <div class="container">
+        <div class="fade-in">
+          <span class="story-cta__eyebrow">We'd Love to Welcome You</span>
+          <h2 class="story-cta__title" id="story-cta-title">
+            Come <em>Experience</em> It Yourself
+          </h2>
+          <p class="story-cta__sub">
+            Every story is best understood through the senses. Come, sit with us,
+            and let the aromas, flavours, and warmth of Bhimas tell the rest.
+          </p>
+          <div class="story-cta__actions">
+            <a href="reservation.html" class="btn btn--primary btn--lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span class="btn__text">Make a Reservation</span>
+            </a>
+            <a href="menu.html" class="btn btn--outline btn--lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>
+              <span class="btn__text">Explore Our Menu</span>
+            </a>
+            <a href="contact.html" class="btn btn--outline-gold btn--lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span class="btn__text">Find Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- ════════════════ END MAIN CONTENT ════════════════════════ -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__logo-text">
+          <span class="footer__logo-name">Bhimas</span>
+          <span class="footer__logo-tagline">Traditional Indian Kitchen</span>
+        </div>
+        <p class="footer__about">Authentic South Indian cuisine crafted with love and tradition, right in the heart of Luxembourg.</p>
+      </div>
+      <nav class="footer__col" aria-label="Explore">
+        <h3 class="footer__col-title">Explore</h3>
+        <a href="index.html" class="footer__link">Home</a>
+        <a href="story.html" class="footer__link">Our Story</a>
+        <a href="menu.html" class="footer__link">Menu</a>
+        <a href="reservation.html" class="footer__link">Reserve a Table</a>
+        <a href="contact.html" class="footer__link">Contact</a>
+      </nav>
+      <nav class="footer__col" aria-label="Our Menu">
+        <h3 class="footer__col-title">Our Menu</h3>
+        <a href="menu-starters.html" class="footer__link">Starters</a>
+        <a href="menu-mains.html" class="footer__link">Mains</a>
+        <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+        <a href="menu-breads.html" class="footer__link">Breads</a>
+        <a href="menu-thali.html" class="footer__link">Thali Platters</a>
+        <a href="menu-desserts.html" class="footer__link">Desserts</a>
+        <a href="menu-drinks.html" class="footer__link">Drinks</a>
+      </nav>
+      <div class="footer__col" aria-label="Visit Us">
+        <h3 class="footer__col-title">Visit Us</h3>
+        <p class="footer__address">123 Rue de la Gare<br>Luxembourg City<br>L-1616, Luxembourg</p>
+        <a href="tel:+35212345678" class="footer__link">+352 12 34 56 78</a>
+        <a href="mailto:hello@bhimas.lu" class="footer__link">hello@bhimas.lu</a>
+        <p class="footer__hours">Mon–Thu: 11:00 – 22:00<br>Fri–Sat: 11:00 – 23:00<br>Sun: 12:00 – 21:00</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copy">&copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- FLOATING CART BAR -->
+  <a href="takeaway.html" class="cart-bar" id="cart-bar" role="status" aria-live="polite">
+    <div class="cart-bar__inner">
+      <div class="cart-bar__left">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-bar__count" aria-label="Items in cart">0</span>
+        <span class="cart-bar__label">items in your order</span>
+      </div>
+      <div class="cart-bar__total">€0.00</div>
+      <div class="cart-bar__btn" role="button">View Order</div>
+    </div>
+  </a>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/main.js"></script>
+
+  <!-- ── Floating Cart Button ──────────────────────────────── -->
+  <a href="takeaway.html" class="cart-fab" id="cart-fab" aria-label="View cart">
+    <span class="cart-fab__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+    </span>
+    <span class="cart-fab__badge" id="cart-fab-count">0</span>
+  </a>
+</body>
+</html>

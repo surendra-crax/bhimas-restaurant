@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── SEO ─── -->
+  <title>Page Title | Bhimas Traditional Indian Kitchen</title>
+  <meta name="description" content="Authentic traditional Indian cuisine in [City]. Book a table, order takeaway or explore our menu." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhimas.lu/PAGE.html" />
+
+  <!-- ─── Open Graph ─── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Bhimas Traditional Indian Kitchen" />
+  <meta property="og:description" content="Authentic traditional Indian cuisine." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta property="og:url"         content="https://bhimas.lu/" />
+
+  <!-- ─── Favicon ─── -->
+  <link rel="icon"             type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon"             type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180"                href="images/apple-touch-icon.png" />
+
+  <!-- ─── CSRF token for AJAX (PHP will replace this) ─── -->
+  <meta name="csrf-token" content="" />
+
+  <!-- ─── Design system ─── -->
+  <link rel="stylesheet" href="css/style.css?v=10005" />
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  PAGE-SPECIFIC <head> additions go here                     ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+</head>
+
+<body>
+
+  <!-- ──────────────────────────────────────────────────────────
+       OVERLAY (for mobile menu)
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       NAVBAR
+  ─────────────────────────────────────────────────────────────── -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="Bhimas Traditional Indian Kitchen — Home">
+        <!-- Replace src with actual logo once available -->
+        <img src="images/logo.png"
+             alt="Bhimas Traditional Indian Kitchen logo"
+             class="navbar__logo-img"
+             width="44" height="44"
+             onerror="this.style.display='none'" />
+        <span class="navbar__logo-text">
+          <span class="navbar__logo-name">Bhimas</span>
+          <span class="navbar__logo-tagline">Traditional Indian Kitchen</span>
+        </span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="navbar__nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html"       class="navbar__link">Home</a>
+        <a href="story.html"       class="navbar__link">Our Story</a>
+        <a href="menu.html"        class="navbar__link">Menu</a>
+        <a href="reservation.html" class="navbar__link">Reserve</a>
+        <a href="takeaway.html"    class="navbar__link">Takeaway</a>
+        <a href="contact.html"     class="navbar__link">Contact</a>
+      </nav>
+
+      <!-- CTA + cart -->
+      <div class="navbar__cta">
+        <!-- Cart count badge; JS populates count -->
+        <a href="takeaway.html" class="navbar__cart-btn" aria-label="View your cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart<span class="navbar__cart-count" aria-live="polite">0</span>
+        </a>
+
+        <a href="login.html" class="btn btn--navbar btn--sm" id="navbar-account-link">Sign In</a>
+        <a href="reservation.html" class="btn btn--navbar btn--sm">Book a Table</a>
+      </div>
+
+      <!-- Hamburger (mobile only, shown via CSS) -->
+      <button class="navbar__hamburger"
+              id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+
+    </div><!-- /.navbar__inner -->
+  </header>
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       MOBILE MENU (slide in from right)
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="navbar__mobile-menu"
+       id="mobile-menu"
+       role="navigation"
+       aria-label="Mobile navigation">
+
+    <a href="index.html"       class="navbar__mobile-link">Home</a>
+    <a href="story.html"       class="navbar__mobile-link">Our Story</a>
+    <a href="menu.html"        class="navbar__mobile-link">Menu</a>
+    <a href="reservation.html" class="navbar__mobile-link">Reserve a Table</a>
+    <a href="takeaway.html"    class="navbar__mobile-link">Order Takeaway</a>
+    <a href="contact.html"     class="navbar__mobile-link">Contact Us</a>
+
+    <div class="navbar__mobile-cta">
+      <a href="login.html" class="btn btn--gold btn--full" id="mobile-navbar-account-link" style="margin-bottom:0.75rem;">Sign In</a>
+      <a href="reservation.html" class="btn btn--gold btn--full">Book a Table</a>
+      <a href="takeaway.html"    class="btn btn--outline-cream btn--full">Order Now</a>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       ╔══════════════════════════════════════════════════════╗
+       ║                                                      ║
+       ║   PAGE CONTENT GOES HERE                            ║
+       ║   Replace the section below in each page.           ║
+       ║                                                      ║
+       ╚══════════════════════════════════════════════════════╝
+  ══════════════════════════════════════════════════════════════ -->
+
+  <!-- Page Hero (inner pages) -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb__item">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span class="breadcrumb__item breadcrumb__item--active">Page Name</span>
+        </nav>
+        <h1 class="page-hero__title">Page Title</h1>
+        <p class="page-hero__sub">A short descriptive subtitle goes here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main page content -->
+  <main id="main-content" tabindex="-1">
+
+    <section class="section">
+      <div class="container">
+
+        <!-- Section heading with mandala ornament -->
+        <div class="section-heading fade-in">
+          <span class="section-heading__eyebrow">Section Label</span>
+          <h2 class="section-heading__title">Section Heading</h2>
+          <div class="section-heading__ornament" aria-hidden="true">
+            <span class="section-heading__ornament-icon"></span>
+          </div>
+          <p class="section-heading__sub">
+            Supporting subtitle text in italic Cormorant Garamond.
+          </p>
+        </div>
+
+        <!-- Example 2-column grid -->
+        <div class="grid-2">
+          <div class="card fade-in fade-in--delay-1">
+            <div class="card__body">
+              <h3 class="card__title">Card Title</h3>
+              <p class="card__desc">Card description text in EB Garamond. Warm, traditional feel.</p>
+            </div>
+            <div class="card__footer">
+              <span class="card__price"><span class="price__currency">£</span>12.99</span>
+              <button class="btn btn--primary btn--sm"
+                      data-add-to-cart
+                      data-item-id="item-001"
+                      data-item-name="Card Title"
+                      data-item-price="12.99">
+                <span class="btn__text">Add to Order</span>
+              </button>
+            </div>
+          </div>
+          <div class="card fade-in fade-in--delay-2">
+            <div class="card__body">
+              <h3 class="card__title">Card Title</h3>
+              <p class="card__desc">Card description text in EB Garamond.</p>
+            </div>
+            <div class="card__footer">
+              <span class="card__price"><span class="price__currency">£</span>14.99</span>
+              <button class="btn btn--primary btn--sm"
+                      data-add-to-cart
+                      data-item-id="item-002"
+                      data-item-name="Card Title"
+                      data-item-price="14.99">
+                <span class="btn__text">Add to Order</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandala divider example -->
+        <div class="divider-mandala" aria-hidden="true">
+          <div class="divider-mandala__inner"></div>
+        </div>
+
+        <!-- Button palette demo -->
+        <div class="flex-center gap-4" style="flex-wrap:wrap; padding-block: var(--space-8);">
+          <a href="#" class="btn btn--primary">Primary Button</a>
+          <a href="#" class="btn btn--gold">Gold Button</a>
+          <a href="#" class="btn btn--outline">Outline Button</a>
+          <a href="#" class="btn btn--outline-gold">Outline Gold</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       END PAGE CONTENT
+  ══════════════════════════════════════════════════════════════ -->
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       FOOTER — 4-column dark maroon
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- Col 1: Brand -->
+        <div class="footer__col">
+          <div class="footer__brand-name">Bhimas</div>
+          <div class="footer__brand-tagline">Traditional Indian Kitchen</div>
+          <p class="footer__desc">
+            Celebrating the rich heritage of Indian cuisine, crafted with
+            generations of tradition, authentic spices, and warm hospitality.
+          </p>
+          <!-- Social links -->
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <!-- Facebook icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <!-- Instagram icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="TripAdvisor">
+              <!-- Generic globe icon for TripAdvisor -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Explore -->
+        <div class="footer__col">
+          <div class="footer__col-title">Explore</div>
+          <nav class="footer__links" aria-label="Footer navigation — Explore">
+            <a href="index.html"       class="footer__link">Home</a>
+            <a href="story.html"       class="footer__link">Our Story</a>
+            <a href="menu.html"        class="footer__link">Full Menu</a>
+            <a href="menu-specials.html" class="footer__link">Chef's Specials</a>
+            <a href="reservation.html" class="footer__link">Book a Table</a>
+            <a href="takeaway.html"    class="footer__link">Order Takeaway</a>
+          </nav>
+        </div>
+
+        <!-- Col 3: Menu Categories -->
+        <div class="footer__col">
+          <div class="footer__col-title">Our Menu</div>
+          <nav class="footer__links" aria-label="Footer navigation — Menu">
+            <a href="menu-starters.html"    class="footer__link">Starters</a>
+            <a href="menu-breads.html"      class="footer__link">Breads</a>
+            <a href="menu-mains.html"       class="footer__link">Main Courses</a>
+            <a href="menu-rice-biryani.html" class="footer__link">Rice &amp; Biryani</a>
+            <a href="menu-desserts.html"    class="footer__link">Desserts</a>
+            <a href="menu-drinks.html"      class="footer__link">Drinks</a>
+          </nav>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div class="footer__col">
+          <div class="footer__col-title">Visit Us</div>
+          <div class="footer__contact-item">
+            <!-- Address icon -->
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div>
+              <span class="footer__contact-label">Address</span>
+              123 High Street, City,<br/>Postcode
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <!-- Phone icon -->
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <div>
+              <span class="footer__contact-label">Telephone</span>
+              <a href="tel:+441234567890" style="color:inherit;">+44 1234 567 890</a>
+            </div>
+          </div>
+          <div class="footer__contact-item">
+            <!-- Clock icon -->
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <div>
+              <span class="footer__contact-label">Opening Hours</span>
+              Mon–Fri: 12pm – 10pm<br/>
+              Sat–Sun: 11am – 11pm
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.footer__top -->
+
+      <!-- Footer bottom bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span class="footer-year">2025</span> Bhimas Traditional Indian Kitchen. All rights reserved.
+        </p>
+        <div class="footer__bottom-links">
+          <a href="privacy.html"  class="footer__bottom-link">Privacy Policy</a>
+          <a href="terms.html"    class="footer__bottom-link">Terms &amp; Conditions</a>
+          <a href="allergies.html" class="footer__bottom-link">Allergen Info</a>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+  </footer>
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       FLOATING CART BAR
+  ─────────────────────────────────────────────────────────────── -->
+  <a href="takeaway.html" class="cart-bar" id="cart-bar" role="status" aria-live="polite">
+    <div class="cart-bar__inner">
+      <div class="cart-bar__left">
+        <!-- Cart icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+             stroke="var(--gold)" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9"  cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-bar__count" aria-label="Items in cart">0</span>
+        <span class="cart-bar__label">items in your order</span>
+      </div>
+      <div class="cart-bar__total">£0.00</div>
+      <div class="cart-bar__btn" role="button">View Order</div>
+    </div>
+  </a>
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       TOAST CONTAINER
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       SCRIPTS
+  ─────────────────────────────────────────────────────────────── -->
+  <script src="js/main.js"></script>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  PAGE-SPECIFIC inline scripts go here                       ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+</body>
+</html>
